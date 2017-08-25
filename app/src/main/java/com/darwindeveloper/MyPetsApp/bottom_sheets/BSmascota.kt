@@ -71,10 +71,15 @@ class BSmascota : BottomSheetDialogFragment() {
                 rootView!!.bsm_tamanio.text = "Tamaño: " + pet.tamanio
                 rootView!!.bsm_nacimiento.text = "Fecha nacimiento: " + pet.fecha_nacimiento
                 rootView!!.bsm_estado.text = "Estado: " + pet.estado
-                rootView!!.bsm_muerte.visibility = View.GONE
+                if (pet.fecha_muerte != null)
+                    rootView!!.bsm_muerte.text = "Fecha muerte: " + pet.fecha_muerte
+                else {
+                    rootView?.bsm_muerte?.visibility = View.GONE
+                }
 
                 rootView!!.bsm_esterilizado.text = "Esterilizado: " + pet.esterilizado
                 rootView!!.bsm_alimentacion.text = "Esterilizado: " + pet.alimentacion
+                rootView!!.bsm_microchip.text = "Microchip: " + pet.microchip
                 rootView!!.bsm_obs.text = pet.observaciones
             }
         }

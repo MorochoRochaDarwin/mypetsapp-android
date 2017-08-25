@@ -44,16 +44,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Mascota ID: 12"
-                        android:textStyle="bold"
-                        android:textSize="20sp" />
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/bsm_nombre"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Oso"
-                        android:textSize="23sp"
-                         />
+                        android:textSize="23sp" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -153,7 +152,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingLeft="6dp"
-                    android:text="Fecha muerte: "
+                    android:text="Microchip: "
                     android:textSize="16sp" />
 
 
