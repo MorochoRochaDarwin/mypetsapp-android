@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "88335268184",
+    "firebase_url": "https://mypetsapp-176413.firebaseio.com",
+    "project_id": "mypetsapp-176413",
+    "storage_bucket": "mypetsapp-176413.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:88335268184:android:25ce8e51fcda594f",
+        "android_client_info": {
+          "package_name": "com.darwindeveloper.MyPetsApp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "88335268184-rpgvo3uhscjas0gju78c8bdojh18b55b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.darwindeveloper.MyPetsApp",
+            "certificate_hash": "948510dee128a995ce2a5504ed77552107245718"
+          }
+        },
+        {
+          "client_id": "88335268184-jc5i0blab7g4uckv1mkecbs1vudfc6ef.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBtpjEhyN9YCioAfK9wsbMN7Xto8Jnfhvw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "88335268184-jc5i0blab7g4uckv1mkecbs1vudfc6ef.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

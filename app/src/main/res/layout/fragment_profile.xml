@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fp_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="12dp"
+        app:fabSize="mini"
+        app:elevation="10dp"
+        app:srcCompat="@drawable/ic_edit" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="15dp">
+
+
+            <TextView
+                android:id="@+id/fp_nombres"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nombres: "
+                android:textSize="20sp" />
+
+
+            <TextView
+                android:id="@+id/fp_apellidos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Apellidos: "
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/fp_cedula"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cedula/Pasaporte: "
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/fp_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Email: "
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/fp_pasis_nacimiento"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pais nacimiento: "
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/fp_nacimiento"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Fecha nacimiento: "
+                android:textSize="20sp" />
+
+
+            <TextView
+                android:id="@+id/fp_celular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Telefono movil: "
+                android:textSize="20sp" />
+
+
+            <TextView
+                android:id="@+id/fp_telefono"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Telefono fijo: "
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/fp_sexo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sexo: "
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/fp_estudio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nivel de estudio: "
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/fp_ocupacion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Profesión: "
+                android:textSize="20sp" />
+
+
+            <TextView
+                android:id="@+id/fp_direccion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Dirección: "
+                android:textSize="20sp" />
+
+
+            <TextView
+                android:id="@+id/fp_provincia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Provincia: "
+                android:textSize="20sp" />
+
+
+            <TextView
+                android:id="@+id/fp_ciudad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ciudad: "
+                android:textSize="20sp" />
+
+
+            <TextView
+                android:id="@+id/fp_sector"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sector: "
+                android:textSize="20sp" />
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</RelativeLayout>
+
