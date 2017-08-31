@@ -32,6 +32,7 @@ class MascotasFragment : Fragment(), MascotasAdapter.MascotasOnClickListener {
 
         val args = Bundle()
         args.putString(BSmascota.MASCOTA_ID, mascota.mascota_id)
+        args.putString(BSmascota.USER_ID, user_id)
         val bs = BSmascota.newInstance(args)
         bs.show(activity.supportFragmentManager, "Bsmascota")
 

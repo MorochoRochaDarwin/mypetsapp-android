@@ -6,6 +6,7 @@ import com.darwindeveloper.MyPetsApp.api.modelos.Mascota;
 import com.darwindeveloper.MyPetsApp.api.modelos.Provincia;
 import com.darwindeveloper.MyPetsApp.api.responses.CheckTokenResponse;
 import com.darwindeveloper.MyPetsApp.api.responses.ClientResponse;
+import com.darwindeveloper.MyPetsApp.api.responses.DefaultResponse;
 import com.darwindeveloper.MyPetsApp.api.responses.PasswordResetResponse;
 import com.darwindeveloper.MyPetsApp.api.responses.UploadResponse;
 import com.darwindeveloper.MyPetsApp.api.responses.UserResponse;
@@ -84,6 +85,25 @@ public interface WebService {
     @POST("eventos_mascota")
     @FormUrlEncoded
     Call<List<Cita>> citas_mascota(@Field("mascota_id") String mascota_id);
+
+    @POST("actualizar_mascota")
+    @FormUrlEncoded
+    Call<DefaultResponse> actualizar_mascota(@Field("mascota_id") String mascota_id,
+                                             @Field("user_id") String user_id,
+                                             @Field("nombre") String nombre,
+                                             @Field("raza") String raza,
+                                             @Field("genero") String sexo,
+                                             @Field("nacimiento") String nacimiento,
+                                             @Field("muerte") String muerte,
+                                             @Field("color") String color,
+                                             @Field("especie") String especie,
+                                             @Field("microchip") String microchip,
+                                             @Field("estado") String estado,
+                                             @Field("esterilizado") String esterilizado,
+                                             @Field("tamanio") String tamanio,
+                                             @Field("alimentacion") String alimentacion,
+                                             @Field("observaciones") String obs
+    );
 
 
 }

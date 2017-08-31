@@ -102,19 +102,6 @@
                         android:textSize="16sp" />
 
 
-                    <android.support.design.widget.TextInputLayout
-                        android:id="@+id/bsm_input_especie"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:visibility="gone">
-
-                        <EditText
-                            android:id="@+id/bsm_edit_especie"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="Especie" />
-                    </android.support.design.widget.TextInputLayout>
-
                     <TextView
                         android:id="@+id/bsm_raza"
                         android:layout_width="match_parent"
@@ -122,19 +109,6 @@
                         android:paddingLeft="6dp"
                         android:text="Raza: "
                         android:textSize="16sp" />
-
-                    <android.support.design.widget.TextInputLayout
-                        android:id="@+id/bsm_input_raza"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:visibility="gone">
-
-                        <EditText
-                            android:id="@+id/bsm_edit_raza"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="Raza" />
-                    </android.support.design.widget.TextInputLayout>
 
                     <TextView
                         android:id="@+id/bsm_tamanio"
@@ -144,27 +118,6 @@
                         android:text="Tamaño: "
                         android:textSize="16sp" />
 
-
-                    <LinearLayout
-                        android:id="@+id/bsm_input_tamanio"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="3dp"
-                        android:visibility="gone">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Tamaño" />
-
-                        <Spinner
-                            android:id="@+id/bsm_spinner_tamanio"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
-                    </LinearLayout>
-
-
                     <TextView
                         android:id="@+id/bsm_sexo"
                         android:layout_width="match_parent"
@@ -172,27 +125,6 @@
                         android:paddingLeft="6dp"
                         android:text="Sexo: "
                         android:textSize="16sp" />
-
-
-                    <LinearLayout
-                        android:id="@+id/bsm_input_sexo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="3dp"
-                        android:visibility="gone">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Sexo" />
-
-                        <Spinner
-                            android:id="@+id/bsm_spinner_sexo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
-                    </LinearLayout>
-
 
                     <TextView
                         android:id="@+id/bsm_color"
@@ -202,19 +134,6 @@
                         android:text="Color:"
                         android:textSize="16sp" />
 
-                    <android.support.design.widget.TextInputLayout
-                        android:id="@+id/bsm_input_color"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:visibility="gone">
-
-                        <EditText
-                            android:id="@+id/bsm_edit_color"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="Color" />
-                    </android.support.design.widget.TextInputLayout>
-
                     <TextView
                         android:id="@+id/bsm_nacimiento"
                         android:layout_width="match_parent"
@@ -223,13 +142,226 @@
                         android:text="Fecha nacimiento: "
                         android:textSize="16sp" />
 
+                    <TextView
+                        android:id="@+id/bsm_estado"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="6dp"
+                        android:text="Estado: "
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/bsm_muerte"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="6dp"
+                        android:text="Fecha muerte: "
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/bsm_esterilizado"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="6dp"
+                        android:text="Esterilizado: "
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/bsm_microchip"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="6dp"
+                        android:text="Microchip: "
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/bsm_alimentacion"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="6dp"
+                        android:text="Alimento: "
+                        android:textSize="16sp" />
+
+
+                    <!--inputs especie y raza-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/bsm_input_especie"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:visibility="gone">
+
+                            <EditText
+                                android:id="@+id/bsm_edit_especie"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Especie" />
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/bsm_input_raza"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:visibility="gone">
+
+                            <EditText
+                                android:id="@+id/bsm_edit_raza"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Raza" />
+                        </android.support.design.widget.TextInputLayout>
+                    </LinearLayout>
+                    <!--input tamanio y sexo-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:id="@+id/bsm_input_tamanio"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:padding="3dp"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Tamaño" />
+
+                            <Spinner
+                                android:id="@+id/bsm_spinner_tamanio"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/bsm_input_sexo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:padding="3dp"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Sexo" />
+
+                            <Spinner
+                                android:id="@+id/bsm_spinner_sexo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+
+                    <!--input esterilizado y microchip-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:id="@+id/bsm_input_esterilizado"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:padding="3dp"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Esterilizado" />
+
+                            <Spinner
+                                android:id="@+id/bsm_spinner_esterilizado"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/bsm_input_microchip"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:padding="3dp"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Microchip" />
+
+                            <Spinner
+                                android:id="@+id/bsm_spinner_microchip"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <!--input color y estado-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/bsm_input_color"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:visibility="gone">
+
+                            <EditText
+                                android:id="@+id/bsm_edit_color"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Color" />
+                        </android.support.design.widget.TextInputLayout>
+
+                        <LinearLayout
+                            android:id="@+id/bsm_input_estado"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:padding="3dp"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Estado" />
+
+                            <Spinner
+                                android:id="@+id/bsm_spinner_estado"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+
                     <LinearLayout
                         android:id="@+id/bsm_input_nacimiento"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
                         android:orientation="vertical"
                         android:padding="3dp"
-                        android:gravity="center_horizontal"
                         android:visibility="gone">
 
                         <TextView
@@ -246,43 +378,6 @@
 
 
                     </LinearLayout>
-
-
-                    <TextView
-                        android:id="@+id/bsm_estado"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="6dp"
-                        android:text="Estado: "
-                        android:textSize="16sp" />
-
-                    <LinearLayout
-                        android:id="@+id/bsm_input_estado"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:visibility="gone">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Estado" />
-
-                        <Spinner
-                            android:id="@+id/bsm_spinner_estado"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
-                    </LinearLayout>
-
-
-                    <TextView
-                        android:id="@+id/bsm_muerte"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="6dp"
-                        android:text="Fecha muerte: "
-                        android:textSize="16sp" />
-
 
                     <LinearLayout
                         android:id="@+id/bsm_input_muerte"
@@ -308,70 +403,6 @@
 
                     </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/bsm_esterilizado"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="6dp"
-                        android:text="Esterilizado: "
-                        android:textSize="16sp" />
-
-                    <LinearLayout
-                        android:id="@+id/bsm_input_esterilizado"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="3dp"
-                        android:visibility="gone">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Esterilizado" />
-
-                        <Spinner
-                            android:id="@+id/bsm_spinner_esterilizado"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
-                    </LinearLayout>
-
-
-                    <TextView
-                        android:id="@+id/bsm_microchip"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="6dp"
-                        android:text="Microchip: "
-                        android:textSize="16sp" />
-
-                    <LinearLayout
-                        android:id="@+id/bsm_input_microchip"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="3dp"
-                        android:visibility="gone">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Microchip" />
-
-                        <Spinner
-                            android:id="@+id/bsm_spinner_microchip"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
-                    </LinearLayout>
-
-
-                    <TextView
-                        android:id="@+id/bsm_alimentacion"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="6dp"
-                        android:text="Alimento: "
-                        android:textSize="16sp" />
-
                     <android.support.design.widget.TextInputLayout
                         android:id="@+id/bsm_input_alimentacion"
                         android:layout_width="match_parent"
@@ -384,7 +415,6 @@
                             android:layout_height="wrap_content"
                             android:hint="Tipo de alimentación" />
                     </android.support.design.widget.TextInputLayout>
-
 
                 </LinearLayout>
 
@@ -449,19 +479,21 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:visibility="gone"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:visibility="gone">
 
                         <Button
+                            android:id="@+id/bsm_btn_save"
+                            style="@style/Base.Widget.AppCompat.Button.Colored"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:maxLines="1"
-                            style="@style/Base.Widget.AppCompat.Button.Colored"
                             android:text="GUARDAR CAMBIOS" />
 
 
                         <Button
+                            android:id="@+id/bsm_btn_cancel"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
