@@ -31,7 +31,7 @@
         android:layout_below="@id/item_e_foto"
         android:background="@drawable/ribbon2g"
         android:gravity="center"
-        android:maxLines="1"
+        android:maxLines="2"
         android:text="Oso"
         android:textColor="#fff"
         android:textSize="10sp"

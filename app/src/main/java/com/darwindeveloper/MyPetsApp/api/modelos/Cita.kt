@@ -19,6 +19,8 @@ class Cita {
 
     @SerializedName("nombre")
     val mascota_nombre: String? = null
+    @SerializedName("foto")
+    val mascota_foto: String? = null
 
     val nombre_establecimeinto: String? = null
 

@@ -15,6 +15,8 @@
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/colorPrimary"
+            app:cardCornerRadius="0dp"
             app:cardElevation="10dp">
 
             <LinearLayout
@@ -23,6 +25,7 @@
                 android:orientation="horizontal">
 
                 <ImageView
+                    android:id="@+id/bsm_foto"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="2.5"
@@ -44,6 +47,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Mascota ID: 12"
+                        android:textColor="#fff"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
@@ -52,7 +56,22 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Oso"
+                        android:textColor="#fff"
                         android:textSize="23sp" />
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/bsm_input_nombre"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone">
+
+                        <EditText
+                            android:id="@+id/bsm_edit_nombre"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Nombre de la mascota"
+                            android:textColor="#fff" />
+                    </android.support.design.widget.TextInputLayout>
                 </LinearLayout>
 
             </LinearLayout>
@@ -65,107 +84,322 @@
             android:layout_marginTop="13dp"
             app:cardElevation="10dp">
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/bsm_especie"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="6dp"
-                    android:text="Especie: "
-                    android:textSize="16sp" />
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/bsm_raza"
-                    android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/bsm_especie"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="6dp"
+                        android:text="Especie: "
+                        android:textSize="16sp" />
+
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/bsm_input_especie"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone">
+
+                        <EditText
+                            android:id="@+id/bsm_edit_especie"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Especie" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <TextView
+                        android:id="@+id/bsm_raza"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="6dp"
+                        android:text="Raza: "
+                        android:textSize="16sp" />
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/bsm_input_raza"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone">
+
+                        <EditText
+                            android:id="@+id/bsm_edit_raza"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Raza" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <TextView
+                        android:id="@+id/bsm_tamanio"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="6dp"
+                        android:text="Tamaño: "
+                        android:textSize="16sp" />
+
+
+                    <LinearLayout
+                        android:id="@+id/bsm_input_tamanio"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="3dp"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Tamaño" />
+
+                        <Spinner
+                            android:id="@+id/bsm_spinner_tamanio"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:id="@+id/bsm_sexo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="6dp"
+                        android:text="Sexo: "
+                        android:textSize="16sp" />
+
+
+                    <LinearLayout
+                        android:id="@+id/bsm_input_sexo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="3dp"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Sexo" />
+
+                        <Spinner
+                            android:id="@+id/bsm_spinner_sexo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:id="@+id/bsm_color"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="6dp"
+                        android:text="Color:"
+                        android:textSize="16sp" />
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/bsm_input_color"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone">
+
+                        <EditText
+                            android:id="@+id/bsm_edit_color"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Color" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <TextView
+                        android:id="@+id/bsm_nacimiento"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="6dp"
+                        android:text="Fecha nacimiento: "
+                        android:textSize="16sp" />
+
+                    <LinearLayout
+                        android:id="@+id/bsm_input_nacimiento"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="3dp"
+                        android:gravity="center_horizontal"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="left"
+                            android:text="Fecha nacimiento" />
+
+                        <DatePicker
+                            android:id="@+id/bsm_datePicker1"
+                            style="@android:style/Widget.DatePicker"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:id="@+id/bsm_estado"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="6dp"
+                        android:text="Estado: "
+                        android:textSize="16sp" />
+
+                    <LinearLayout
+                        android:id="@+id/bsm_input_estado"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Estado" />
+
+                        <Spinner
+                            android:id="@+id/bsm_spinner_estado"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:id="@+id/bsm_muerte"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="6dp"
+                        android:text="Fecha muerte: "
+                        android:textSize="16sp" />
+
+
+                    <LinearLayout
+                        android:id="@+id/bsm_input_muerte"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical"
+                        android:padding="3dp"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="left"
+                            android:text="Fecha de muerte" />
+
+                        <DatePicker
+                            android:id="@+id/bsm_datePicker2"
+                            style="@android:style/Widget.DatePicker"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/bsm_esterilizado"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="6dp"
+                        android:text="Esterilizado: "
+                        android:textSize="16sp" />
+
+                    <LinearLayout
+                        android:id="@+id/bsm_input_esterilizado"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="3dp"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Esterilizado" />
+
+                        <Spinner
+                            android:id="@+id/bsm_spinner_esterilizado"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:id="@+id/bsm_microchip"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="6dp"
+                        android:text="Microchip: "
+                        android:textSize="16sp" />
+
+                    <LinearLayout
+                        android:id="@+id/bsm_input_microchip"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="3dp"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Microchip" />
+
+                        <Spinner
+                            android:id="@+id/bsm_spinner_microchip"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:id="@+id/bsm_alimentacion"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="6dp"
+                        android:text="Alimento: "
+                        android:textSize="16sp" />
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/bsm_input_alimentacion"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone">
+
+                        <EditText
+                            android:id="@+id/bsm_edit_alimentacion"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Tipo de alimentación" />
+                    </android.support.design.widget.TextInputLayout>
+
+
+                </LinearLayout>
+
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/bsm_fab_edit"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="6dp"
-                    android:text="Raza: "
-                    android:textSize="16sp" />
+                    android:layout_alignParentRight="true"
+                    android:layout_margin="5dp"
+                    android:clickable="true"
+                    app:elevation="10dp"
+                    app:fabSize="mini"
+                    app:srcCompat="@drawable/ic_edit" />
 
-                <TextView
-                    android:id="@+id/bsm_tamanio"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="6dp"
-                    android:text="Tamaño: "
-                    android:textSize="16sp" />
-
-
-                <TextView
-                    android:id="@+id/bsm_sexo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="6dp"
-                    android:text="Sexo: "
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/bsm_color"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="6dp"
-                    android:text="Color:"
-                    android:textSize="16sp" />
-
-
-                <TextView
-                    android:id="@+id/bsm_nacimiento"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="6dp"
-                    android:text="Fecha nacimiento: "
-                    android:textSize="16sp" />
-
-
-                <TextView
-                    android:id="@+id/bsm_estado"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="6dp"
-                    android:text="Estado: "
-                    android:textSize="16sp" />
-
-
-                <TextView
-                    android:id="@+id/bsm_muerte"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="6dp"
-                    android:text="Fecha muerte: "
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/bsm_esterilizado"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="6dp"
-                    android:text="Esterilizado: "
-                    android:textSize="16sp" />
-
-
-                <TextView
-                    android:id="@+id/bsm_microchip"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="6dp"
-                    android:text="Microchip: "
-                    android:textSize="16sp" />
-
-
-                <TextView
-                    android:id="@+id/bsm_alimentacion"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="6dp"
-                    android:text="Alimento: "
-                    android:textSize="16sp" />
-
-
-            </LinearLayout>
+            </RelativeLayout>
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
@@ -175,27 +409,70 @@
             android:layout_marginTop="13dp"
             app:cardElevation="10dp">
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="wrap_content">
 
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="6dp"
-                    android:text="Descripción o rasgos caracteristicos: "
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/bsm_obs"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="6dp"
-                    android:textSize="14sp" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="6dp"
+                        android:text="Descripción o rasgos caracteristicos: "
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
-            </LinearLayout>
+                    <TextView
+                        android:id="@+id/bsm_obs"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="6dp"
+                        android:paddingRight="6dp"
+                        android:textSize="14sp" />
+
+
+                    <EditText
+                        android:id="@+id/bsm_edit_obs"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Detalles o rasgos caracteristicos de la mascota"
+                        android:inputType="textMultiLine"
+                        android:visibility="gone" />
+
+
+                    <LinearLayout
+                        android:id="@+id/bsm_btns"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:visibility="gone"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:maxLines="1"
+                            style="@style/Base.Widget.AppCompat.Button.Colored"
+                            android:text="GUARDAR CAMBIOS" />
+
+
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="CANCELAR" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+
         </android.support.v7.widget.CardView>
 
 
@@ -245,10 +522,39 @@
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/bsm_cardView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:cardUseCompatPadding="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_closeb" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="No hay citas o eventos pendientes" />
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/bsm_list_eventos"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="match_parent"
+                    android:visibility="gone" />
+
+
             </LinearLayout>
         </android.support.v7.widget.CardView>
 

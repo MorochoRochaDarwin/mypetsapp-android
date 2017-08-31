@@ -46,6 +46,10 @@ public interface WebService {
     @FormUrlEncoded
     Call<List<Establecimiento>> establecimientos(@Field("user_id") String user_id);
 
+    @POST("establecimientos_mascota")
+    @FormUrlEncoded
+    Call<List<Establecimiento>> establecimientos_mascota(@Field("mascota_id") String mascota_id);
+
 
     @POST("mascotas")
     @FormUrlEncoded
@@ -76,6 +80,10 @@ public interface WebService {
     @FormUrlEncoded
     Call<List<Cita>> citas(@Field("user_id") String user_id,
                            @Field("api_token") String api_token);
+
+    @POST("eventos_mascota")
+    @FormUrlEncoded
+    Call<List<Cita>> citas_mascota(@Field("mascota_id") String mascota_id);
 
 
 }

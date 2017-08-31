@@ -40,6 +40,10 @@ class EstablecimientosAdapter(private val context: Context, private val establec
                     .into(holder.itemView.item_e_foto)
         }
 
+        holder.itemView.setOnClickListener {
+            onClickEstListener?.onEstClick(est)
+        }
+
     }
 
     override fun getItemCount(): Int {
@@ -48,4 +52,15 @@ class EstablecimientosAdapter(private val context: Context, private val establec
 
 
     inner class ESViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+
+
+    var onClickEstListener: OnClickEstListener? = null
+
+    public interface OnClickEstListener {
+        /**
+         * listener para cuando se da click en un establecimeinto
+         */
+        fun onEstClick(est: Establecimiento)
+    }
+
 }
