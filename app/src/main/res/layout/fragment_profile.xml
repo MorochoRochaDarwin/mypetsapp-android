@@ -9,12 +9,12 @@
         android:id="@+id/fp_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:clickable="true"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_margin="12dp"
-        app:fabSize="mini"
+        android:clickable="true"
         app:elevation="10dp"
+        app:fabSize="mini"
         app:srcCompat="@drawable/ic_edit" />
 
     <ScrollView
@@ -23,122 +23,310 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
             android:padding="15dp">
 
-
-            <TextView
-                android:id="@+id/fp_nombres"
+            <WebView
+                android:id="@+id/webview_profile"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Nombres: "
-                android:textSize="20sp" />
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/print_button" />
 
 
-            <TextView
-                android:id="@+id/fp_apellidos"
+            <LinearLayout
+                android:id="@+id/fp_layout_edit"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Apellidos: "
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/fp_cedula"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Cedula/Pasaporte: "
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/fp_email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Email: "
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/fp_pasis_nacimiento"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Pais nacimiento: "
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/fp_nacimiento"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Fecha nacimiento: "
-                android:textSize="20sp" />
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="gone">
 
 
-            <TextView
-                android:id="@+id/fp_celular"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Telefono movil: "
-                android:textSize="20sp" />
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/fp_nombres"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Nombres" />
+                </android.support.design.widget.TextInputLayout>
 
 
-            <TextView
-                android:id="@+id/fp_telefono"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Telefono fijo: "
-                android:textSize="20sp" />
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/fp_sexo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Sexo: "
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/fp_estudio"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Nivel de estudio: "
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/fp_ocupacion"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Profesión: "
-                android:textSize="20sp" />
+                    <EditText
+                        android:id="@+id/fp_apellidos"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Apellidos" />
+                </android.support.design.widget.TextInputLayout>
 
 
-            <TextView
-                android:id="@+id/fp_direccion"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Dirección: "
-                android:textSize="20sp" />
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/fp_cedula"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Cedula/Pasaporte" />
+                </android.support.design.widget.TextInputLayout>
 
 
-            <TextView
-                android:id="@+id/fp_provincia"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Provincia: "
-                android:textSize="20sp" />
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/fp_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Email"
+                        android:inputType="textEmailAddress" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/fp_celular"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Telefono movil"
+                        android:inputType="phone" />
+                </android.support.design.widget.TextInputLayout>
 
 
-            <TextView
-                android:id="@+id/fp_ciudad"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Ciudad: "
-                android:textSize="20sp" />
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/fp_telefono"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Telefono fijo"
+                        android:inputType="phone" />
+                </android.support.design.widget.TextInputLayout>
 
 
-            <TextView
-                android:id="@+id/fp_sector"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Sector: "
-                android:textSize="20sp" />
+                <LinearLayout
+                    android:id="@+id/fp_sexo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:padding="3dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:text="Genero:" />
+
+                    <Spinner
+                        android:id="@+id/fp_spinner_genero"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/fp_pais"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:padding="3dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:text="Pais de nacimiento:" />
+
+                    <Spinner
+                        android:id="@+id/fp_spinner_pais"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/fp_nacimiento"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:padding="3dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:text="Fecha nacimiento" />
+
+                    <DatePicker
+                        android:id="@+id/fp_datePicker"
+                        style="@android:style/Widget.DatePicker"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/fp_nivel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:padding="3dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:text="Nivel_estudio:" />
+
+                    <Spinner
+                        android:id="@+id/fp_spinner_nivel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+
+                </LinearLayout>
+
+
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/fp_direccion"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Dirección" />
+                </android.support.design.widget.TextInputLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/fp_provincia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:padding="3dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:text="Provincia:" />
+
+                    <Spinner
+                        android:id="@+id/fp_spinner_provincia"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/fp_ciudad"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:padding="3dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:text="Ciudad:" />
+
+                    <Spinner
+                        android:id="@+id/fp_spinner_ciudad"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/fp_sector"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:padding="3dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:text="Sector:" />
+
+                    <Spinner
+                        android:id="@+id/fp_spinner_sector"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:id="@+id/fp_btns"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    >
+
+                    <Button
+                        android:id="@+id/fp_btn_save"
+                        style="@style/Base.Widget.AppCompat.Button.Colored"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:maxLines="1"
+                        android:text="GUARDAR CAMBIOS" />
+
+
+                    <Button
+                        android:id="@+id/fp_btn_cancel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="CANCELAR" />
+                </LinearLayout>
+
+
+
+
+
+
+            </LinearLayout>
+
+
+
 
 
         </LinearLayout>

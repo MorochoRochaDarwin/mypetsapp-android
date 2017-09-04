@@ -34,10 +34,14 @@ import com.google.android.gms.tasks.OnFailureListener
 import com.google.firebase.storage.FirebaseStorage
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
+import okhttp3.MediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.ByteArrayOutputStream
+import java.io.File
 
 
 class DashboardActivity : AppCompatActivity() {
@@ -105,7 +109,7 @@ class DashboardActivity : AppCompatActivity() {
 
         if (foto != null) {
             Picasso.with(this)
-                    .load(foto)
+                    .load(Constants.WEB_URL+foto)
                     .placeholder(R.drawable.man)
                     .into(dashboard_profile_image);
         }
@@ -225,6 +229,7 @@ class DashboardActivity : AppCompatActivity() {
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
 
         //cuando se regresa de la actividad cropper
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
@@ -234,56 +239,81 @@ class DashboardActivity : AppCompatActivity() {
                 Toast.makeText(this, "subiendo imagen...", Toast.LENGTH_SHORT).show()
 
                 val uri = result.uri//obtenemos la uri de la imagen recortada
-                //Toast.makeText(this, uri.toString(), Toast.LENGTH_SHORT).show()
-                val storage = FirebaseStorage.getInstance()
-                val reference = storage.getReference();
-                val userImageRef = reference.child("users_images/user_${user_id}_photo.png")
+                /*
+                  //Toast.makeText(this, uri.toString(), Toast.LENGTH_SHORT).show()
+                  val storage = FirebaseStorage.getInstance()
+                  val reference = storage.getReference();
+                  val userImageRef = reference.child("users_images/user_${user_id}_photo.png")
 
-                var bitmap = MediaStore.Images.Media.getBitmap(contentResolver, uri)
-                bitmap = getResizedBitmap(bitmap, 500)
+                  var bitmap = MediaStore.Images.Media.getBitmap(contentResolver, uri)
+                  bitmap = getResizedBitmap(bitmap, 500)
 
-                val baos = ByteArrayOutputStream()
-                bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos)
-                val dataImage = baos.toByteArray()
-                val uploadTask = userImageRef.putBytes(dataImage)
-                uploadTask.addOnFailureListener(OnFailureListener {
-                    Toast.makeText(this, "Error; intente mas tarde", Toast.LENGTH_SHORT).show()
-                }).addOnSuccessListener {
-                    taskSnapshot ->
-                    val downloadUrl = taskSnapshot.downloadUrl
+                  val baos = ByteArrayOutputStream()
+                  bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos)
+                  val dataImage = baos.toByteArray()
+                  val uploadTask = userImageRef.putBytes(dataImage)
+                  uploadTask.addOnFailureListener(OnFailureListener {
+                      Toast.makeText(this, "Error; intente mas tarde", Toast.LENGTH_SHORT).show()
+                  }).addOnSuccessListener {
+                      taskSnapshot ->
+                      val downloadUrl = taskSnapshot.downloadUrl
 
-                    Picasso.with(this)
-                            .load(downloadUrl.toString())
-                            .placeholder(R.drawable.man)
-                            .into(dashboard_profile_image);
-
-                    val ws = WebApiClient.client!!.create(WebService::class.java)
-                    val call = ws.subir_foto(user_id, api_token, downloadUrl.toString())
-                    call.enqueue(object : Callback<UploadResponse> {
-                        override fun onResponse(call: Call<UploadResponse>?, response: Response<UploadResponse>?) {
+                      Picasso.with(this)
+                              .load(downloadUrl.toString())
+                              .placeholder(R.drawable.man)
+                              .into(dashboard_profile_image);
 
 
-                            val res = response?.body()
-                            if (res != null) {
-                                if (res.status == 200) {
-                                    val editor = PreferenceManager.getDefaultSharedPreferences(this@DashboardActivity).edit()
-                                    editor.putString(Constants.USER_PHOTO, downloadUrl.toString())
-                                    editor.apply()
-                                }
-                                Toast.makeText(this@DashboardActivity, res.msg, Toast.LENGTH_SHORT).show()
+                  }
+                 */
 
+
+                val file = File(uri.path)
+
+
+                val requestFile = RequestBody.create(MediaType.parse("image/jpeg"), file);
+                // MultipartBody.Part is used to send also the actual file name
+                val body =
+                        MultipartBody.Part.createFormData("image", file.getName(), requestFile);
+
+                // add another part within the multipart request
+                val mapi_token = RequestBody.create(
+                        MediaType.parse("ext/plain"), api_token)
+
+
+                val muser_id = RequestBody.create(
+                        MediaType.parse("ext/plain"), user_id)
+
+
+                val ws = WebApiClient.client!!.create(WebService::class.java)
+                val mcall = ws.subir_foto(muser_id, mapi_token, body)
+                mcall.enqueue(object : Callback<UploadResponse> {
+                    override fun onResponse(call: Call<UploadResponse>?, response: Response<UploadResponse>?) {
+
+
+                        val res = response?.body()
+                        if (res != null) {
+                            if (res.status == 200) {
+
+                                Picasso.with(this@DashboardActivity)
+                                        .load(Constants.WEB_URL + res.url)
+                                        .into(dashboard_profile_image)
+
+                                val editor = PreferenceManager.getDefaultSharedPreferences(this@DashboardActivity).edit()
+                                editor.putString(Constants.USER_PHOTO, res.url)
+                                editor.apply()
                             }
+                            Toast.makeText(this@DashboardActivity, res.msg, Toast.LENGTH_SHORT).show()
 
                         }
 
-                        override fun onFailure(call: Call<UploadResponse>?, t: Throwable?) {
-                            Toast.makeText(this@DashboardActivity, "Error; intente mas tarde", Toast.LENGTH_SHORT).show()
-                        }
+                    }
 
-                    })
+                    override fun onFailure(call: Call<UploadResponse>?, t: Throwable?) {
+                        Toast.makeText(this@DashboardActivity, "Error; intente mas tarde", Toast.LENGTH_SHORT).show()
+                    }
 
-
-                }
+                })
 
             }
         }

@@ -1,5 +1,6 @@
 package com.darwindeveloper.MyPetsApp.fragments
 
+import android.content.Intent
 import android.os.AsyncTask
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -10,12 +11,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.darwindeveloper.MyPetsApp.MascotaActivity
 import com.darwindeveloper.MyPetsApp.R
 import com.darwindeveloper.MyPetsApp.adapters.MascotasAdapter
 import com.darwindeveloper.MyPetsApp.api.WebApiClient
 import com.darwindeveloper.MyPetsApp.api.WebService
 import com.darwindeveloper.MyPetsApp.api.modelos.Mascota
-import com.darwindeveloper.MyPetsApp.bottom_sheets.BSmascota
 import kotlinx.android.synthetic.main.fragment_mascotas.*
 import kotlinx.android.synthetic.main.fragment_mascotas.view.*
 import retrofit2.Call
@@ -30,12 +31,10 @@ class MascotasFragment : Fragment(), MascotasAdapter.MascotasOnClickListener {
 
     override fun mascotaOnClick(mascota: Mascota) {
 
-        val args = Bundle()
-        args.putString(BSmascota.MASCOTA_ID, mascota.mascota_id)
-        args.putString(BSmascota.USER_ID, user_id)
-        val bs = BSmascota.newInstance(args)
-        bs.show(activity.supportFragmentManager, "Bsmascota")
-
+        val mIntent = Intent(context, MascotaActivity::class.java)
+        mIntent.putExtra(MascotaActivity.MASCOTA_ID, mascota.mascota_id)
+        mIntent.putExtra(MascotaActivity.USER_ID, user_id)
+        startActivity(mIntent)
 
     }
 

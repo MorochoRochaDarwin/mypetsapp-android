@@ -13,11 +13,15 @@ import com.darwindeveloper.MyPetsApp.api.responses.UserResponse;
 
 import java.util.List;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 
 /**
  * Created by Darwin Morocho on 18/06/2017.
@@ -71,10 +75,10 @@ public interface WebService {
     Call<List<Provincia>> provincias();
 
 
+    @Multipart
     @POST("foto_cliente")
-    @FormUrlEncoded
-    Call<UploadResponse> subir_foto(@Field("user_id") String user_id,
-                                    @Field("api_token") String api_token, @Field("url") String url);
+    Call<UploadResponse> subir_foto(@Part("user_id") RequestBody user_id,
+                                    @Part("api_token") RequestBody uapi_token, @Part MultipartBody.Part image);
 
 
     @POST("eventos")
@@ -105,5 +109,31 @@ public interface WebService {
                                              @Field("observaciones") String obs
     );
 
+
+    @POST("actualizar_cliente")
+    @FormUrlEncoded
+    Call<DefaultResponse> actualizar_cliente(@Field("api_token") String api_token,
+                                             @Field("user_id") String user_id,
+                                             @Field("nombres") String nombres,
+                                             @Field("apellidos") String apellidos,
+                                             @Field("cedula") String cedula,
+                                             @Field("email") String email,
+                                             @Field("genero") String genero,
+                                             @Field("nacimiento") String nacimiento,
+                                             @Field("nacionalidad") String nacionalidad,
+                                             @Field("celular") String celular,
+                                             @Field("telefono") String telefono,
+                                             @Field("nivel") String nivel,
+                                             @Field("direccion") String direccion,
+                                             @Field("provincia") String provincia,
+                                             @Field("ciudad") String ciudad,
+                                             @Field("sector") String sector
+
+                                             );
+
+
+    @Multipart
+    @POST("actualizar_foto_mascota")
+    Call<UploadResponse> actualizar_foto_mascota(@Part("user_id") RequestBody user_id, @Part("mascota_id") RequestBody mascota_id, @Part MultipartBody.Part image);
 
 }

@@ -8,5 +8,6 @@ import com.darwindeveloper.MyPetsApp.api.modelos.Cliente
 class ClientResponse {
     val status: Int = 0
     val client: Cliente? = null
+    val html: String? = null
     val msg: String? = null
 }
