@@ -6,6 +6,7 @@ package com.darwindeveloper.MyPetsApp.api
 
 object Constants {
     val WEB_URL = "http://192.168.0.107/mypetsapp/public"
+    //val WEB_URL = "http://mypetsapp.herokuapp.com"
 
     val FIREBASE_TOKEN = "FIREBAS_TOKEN"
     val USER_ID = "USER_ID"

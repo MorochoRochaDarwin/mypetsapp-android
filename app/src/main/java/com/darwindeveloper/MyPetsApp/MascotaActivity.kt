@@ -35,12 +35,41 @@ import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
 
-class MascotaActivity : AppCompatActivity() {
+class MascotaActivity : AppCompatActivity(), EstablecimientosAdapter.OnClickEstListener, EventosMascotaAdapter.OnEventsPetClickListener {
+    override fun onEventPetClick(cita: Cita) {
+        val i = Intent(this, EventActivity::class.java)
+        i.putExtra(EventActivity.CITA_ID, cita.cita_id)
+        i.putExtra(EventActivity.TITULO, cita.motivo)
+        i.putExtra(EventActivity.CREADA, cita.fecha_creada)
+        i.putExtra(EventActivity.FECHA, cita.fecha)
+        i.putExtra(EventActivity.HORA, cita.hora)
+        i.putExtra(EventActivity.DESCR, cita.descripcion)
+        i.putExtra(EventActivity.EST_ID, cita.establecimiento_id)
+        i.putExtra(EventActivity.EST, cita.nombre_establecimiento)
+        i.putExtra(EventActivity.MASCOTA_ID, cita.mascota_id)
+        i.putExtra(EventActivity.MASCOTA_NOMBRE, cita.mascota_nombre)
+        i.putExtra(EventActivity.MASCOTA_FOTO, cita.mascota_foto)
+
+        startActivity(i)
+    }
+
+    override fun onEstClick(est: Establecimiento) {
+
+        val mIntent = Intent(this, EstablecimientoActivity::class.java)
+        mIntent.putExtra(EstablecimientoActivity.USER_ID, user_id)
+        mIntent.putExtra(EstablecimientoActivity.API_TOKEN, api_token)
+        mIntent.putExtra(EstablecimientoActivity.EST_ID, est.establecimiento_id)
+        mIntent.putExtra(EstablecimientoActivity.EST_NOMBRE, est.nombre_establecimiento)
+        mIntent.putExtra(EstablecimientoActivity.EST_ICONO, est.icono)
+
+        startActivity(mIntent)
+    }
 
 
     private var mascota_id: String? = null
     private var user_id: String? = null
-    private var rootView: View? = null
+    private var api_token: String? = null
+
 
     private var vivo = true
 
@@ -68,6 +97,7 @@ class MascotaActivity : AppCompatActivity() {
     companion object {
         const val MASCOTA_ID = "Amascota.mascota_id"
         const val USER_ID = "Amascota.user_id"
+        const val API_TOKEN = "Amascota.api_token"
     }
 
 
@@ -77,11 +107,14 @@ class MascotaActivity : AppCompatActivity() {
 
         mascota_id = intent.getStringExtra(MASCOTA_ID)
         user_id = intent.getStringExtra(USER_ID)
+        api_token = intent.getStringExtra(API_TOKEN)
 
 
 
         adapterEstablecimientos = EstablecimientosAdapter(this@MascotaActivity, establecimientos)
+        adapterEstablecimientos?.onClickEstListener = this
         adapterEvents = EventosMascotaAdapter(this@MascotaActivity, eventos)
+        adapterEvents?.onEventsPetClickListener=this
         bsm_establecimientos.layoutManager = LinearLayoutManager(this@MascotaActivity, LinearLayoutManager.HORIZONTAL, false)
         bsm_list_eventos.layoutManager = LinearLayoutManager(this@MascotaActivity)
         bsm_establecimientos.adapter = adapterEstablecimientos
@@ -251,7 +284,6 @@ class MascotaActivity : AppCompatActivity() {
         bsm_edit_obs.visibility = View.VISIBLE
         bsm_obs.visibility = View.GONE
     }
-
 
 
     private fun hideEdit() {
@@ -497,8 +529,6 @@ class MascotaActivity : AppCompatActivity() {
 
                 val uri = result.uri//obtenemos la uri de la imagen recortada
                 val file = File(uri.path)
-
-
 
 
                 val requestFile = RequestBody.create(MediaType.parse("image/jpeg"), file);

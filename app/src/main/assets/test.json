@@ -1,0 +1,103 @@
+[
+  {
+    "provincia_id": 1,
+    "provincia_nombre": "Pichincha",
+    "ciudades": [
+      {
+        "ciudad_id": 1,
+        "sitios": [
+          {
+            "id": 1,
+            "nombre": "Al mio modo restaurante italiano",
+            "lat": "-0.168031",
+            "lng": "78.472221",
+            "html": "<p><strong>DIRECCI&oacute;N:<\/strong> E12-71 e, Av. De los Granados, Quito 170503, Ecuador<\/p>",
+            "ciudad_id": 1,
+            "sector_id": 10
+          },
+          {
+            "id": 2,
+            "nombre": "Lucia Italia Pasta, Pizza y Gelato",
+            "lat": "-0.2015977",
+            "lng": "78.4318555",
+            "html": "<p><strong>DIRECCION:<\/strong> Juan Montalvo y Gabriel Garcia Moreno, en el parque de la iglesia de Cumbay&aacute;<\/p>",
+            "ciudad_id": 1,
+            "sector_id": 10
+          }
+        ],
+        "ciudad_nombre": "Quito",
+        "sectores": [
+          {
+            "sector_id": 6,
+            "sector_nombre": "La marin"
+          },
+          {
+            "sector_id": 10,
+            "sector_nombre": "condado"
+          },
+          {
+            "sector_id": 11,
+            "sector_nombre": "uce"
+          }
+        ]
+      },
+      {
+        "ciudad_id": 3,
+        "sitios": [],
+        "ciudad_nombre": "Cayambe",
+        "sectores": [
+          {
+            "sector_id": 3,
+            "sector_nombre": "Juan Montalvo"
+          },
+          {
+            "sector_id": 4,
+            "sector_nombre": "Parque central"
+          }
+        ]
+      },
+      {
+        "ciudad_id": 5,
+        "sitios": [],
+        "ciudad_nombre": "Ibarra",
+        "sectores": []
+      }
+    ]
+  },
+  {
+    "provincia_id": 2,
+    "provincia_nombre": "Tungurahua",
+    "ciudades": [
+      {
+        "ciudad_id": 2,
+        "sitios": [],
+        "ciudad_nombre": "Ambato",
+        "sectores": [
+          {
+            "sector_id": 2,
+            "sector_nombre": "Parque Central"
+          },
+          {
+            "sector_id": 9,
+            "sector_nombre": "mall sur"
+          }
+        ]
+      },
+      {
+        "ciudad_id": 4,
+        "sitios": [],
+        "ciudad_nombre": "Ba\u00f1os",
+        "sectores": [
+          {
+            "sector_id": 7,
+            "sector_nombre": "la rotonda"
+          },
+          {
+            "sector_id": 8,
+            "sector_nombre": "maluma"
+          }
+        ]
+      }
+    ]
+  }
+]

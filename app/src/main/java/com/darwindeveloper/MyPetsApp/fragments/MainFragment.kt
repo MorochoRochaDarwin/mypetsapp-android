@@ -46,6 +46,7 @@ class MainFragment : Fragment() {
 
         val args = Bundle()
         args.putString(MascotasFragment.USER_ID, user_id)
+        args.putString(MascotasFragment.API_TOKEN, api_token)
 
         val transaction = activity.supportFragmentManager.beginTransaction()
         transaction.replace(R.id.fragment_container_mascotas, MascotasFragment.newInstance(args))
@@ -54,7 +55,7 @@ class MainFragment : Fragment() {
 
         val args2 = Bundle()
         args2.putString(EstablecimientosFragment.USER_ID, user_id)
-        // args2.putString(EventosFragment.USER_API_TOKEN, api_token)
+        args2.putString(EstablecimientosFragment.API_TOKEN, api_token)
 
 
         val transaction2 = activity.supportFragmentManager.beginTransaction()

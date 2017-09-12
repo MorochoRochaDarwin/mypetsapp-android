@@ -22,6 +22,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
+import retrofit2.http.Path;
 
 /**
  * Created by Darwin Morocho on 18/06/2017.
@@ -55,6 +56,10 @@ public interface WebService {
     @FormUrlEncoded
     Call<List<Establecimiento>> establecimientos_mascota(@Field("mascota_id") String mascota_id);
 
+    @POST("establecimiento_mascotas")
+    @FormUrlEncoded
+    Call<List<Mascota>> mascotas_establecimiento(@Field("user_id") String user_id, @Field("est_id") String est_id);
+
 
     @POST("mascotas")
     @FormUrlEncoded
@@ -75,6 +80,10 @@ public interface WebService {
     Call<List<Provincia>> provincias();
 
 
+    @GET("sitios/{categoria}")
+    Call<List<Provincia>> sitios(@Path("categoria") String categoria);
+
+
     @Multipart
     @POST("foto_cliente")
     Call<UploadResponse> subir_foto(@Part("user_id") RequestBody user_id,
@@ -86,9 +95,28 @@ public interface WebService {
     Call<List<Cita>> citas(@Field("user_id") String user_id,
                            @Field("api_token") String api_token);
 
+    @POST("eventos_establecimiento")
+    @FormUrlEncoded
+    Call<List<Cita>> citas_est(@Field("user_id") String user_id,
+                               @Field("est_id") String est_id);
+
     @POST("eventos_mascota")
     @FormUrlEncoded
     Call<List<Cita>> citas_mascota(@Field("mascota_id") String mascota_id);
+
+
+    @POST("agendar_cita")
+    @FormUrlEncoded
+    Call<DefaultResponse> agendar_cita(@Field("user_id") String user_id,
+                                       @Field("api_token") String api_token,
+                                       @Field("mascota_id") String mascota_id,
+                                       @Field("est_id") String est_id,
+                                       @Field("motivo") String motivo,
+                                       @Field("hora") String hora,
+                                       @Field("fecha") String fecha,
+                                       @Field("obs") String obs
+    );
+
 
     @POST("actualizar_mascota")
     @FormUrlEncoded
@@ -129,7 +157,7 @@ public interface WebService {
                                              @Field("ciudad") String ciudad,
                                              @Field("sector") String sector
 
-                                             );
+    );
 
 
     @Multipart

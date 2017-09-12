@@ -34,6 +34,7 @@ class MascotasFragment : Fragment(), MascotasAdapter.MascotasOnClickListener {
         val mIntent = Intent(context, MascotaActivity::class.java)
         mIntent.putExtra(MascotaActivity.MASCOTA_ID, mascota.mascota_id)
         mIntent.putExtra(MascotaActivity.USER_ID, user_id)
+        mIntent.putExtra(MascotaActivity.API_TOKEN, api_token)
         startActivity(mIntent)
 
     }
@@ -41,6 +42,7 @@ class MascotasFragment : Fragment(), MascotasAdapter.MascotasOnClickListener {
 
     companion object {
         const val USER_ID: String = "mascotasFragment.user_id"
+        const val API_TOKEN: String = "mascotasFragment.api_token"
 
         fun newInstance(args: Bundle): MascotasFragment {
             val fragment = MascotasFragment()
@@ -55,12 +57,14 @@ class MascotasFragment : Fragment(), MascotasAdapter.MascotasOnClickListener {
 
 
     private var user_id: String? = null
+    private var api_token: String? = null
 
     private var loadTask: LoadTask? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         user_id = arguments[USER_ID] as String
+        api_token = arguments[API_TOKEN] as String
     }
 
 

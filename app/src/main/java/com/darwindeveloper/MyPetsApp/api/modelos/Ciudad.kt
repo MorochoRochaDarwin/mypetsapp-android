@@ -8,4 +8,5 @@ class Ciudad {
     val ciudad_id: String? = null
     val ciudad_nombre: String? = null
     val sectores: List<Sector>? = null
+    val sitios: List<Sitio>? = null
 }

@@ -15,17 +15,24 @@ import android.webkit.WebView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.darwindeveloper.MyPetsApp.sqlite.DBManager;
+
 
 public class NotificacionActivity extends AppCompatActivity {
 
 
     private WebView myWebView;
+    private DBManager dbManager;
+    private String establecimiento_id, establecimiento, titulo, fecha, html;
+    private boolean guardado;
 
     @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notificacion);
+
+        dbManager = new DBManager(this);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -34,12 +41,18 @@ public class NotificacionActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         if (getIntent().getExtras() != null) {
-            String titulo = getIntent().getStringExtra("titulo");
-            String establecimiento_id = getIntent().getStringExtra("establecimiento_id");
-            String establecimiento = getIntent().getStringExtra("nombre_establecimiento");
-            String fecha = getIntent().getStringExtra("publicado");
-            String html = getIntent().getStringExtra("html");
+            titulo = getIntent().getStringExtra("titulo");
+            establecimiento_id = getIntent().getStringExtra("establecimiento_id");
+            establecimiento = getIntent().getStringExtra("nombre_establecimiento");
+            fecha = getIntent().getStringExtra("publicado");
+            html = getIntent().getStringExtra("html");
+            guardado = getIntent().getBooleanExtra("guardado", false);
 
+
+            if (establecimiento_id == null) {
+                establecimiento_id = "-1";
+                establecimiento = "MyPetsApp";
+            }
 
             TextView textViewTitulo = (TextView) findViewById(R.id.titulo);
             TextView textViewRemitente = (TextView) findViewById(R.id.remitente);
@@ -99,6 +112,15 @@ public class NotificacionActivity extends AppCompatActivity {
                 break;
             case R.id.action_pdf:
                 createWebPrintJob(myWebView);
+                break;
+
+
+            case R.id.action_save:
+                if (guardado) {
+                    Toast.makeText(this, "Error: Guardado anteriormente", Toast.LENGTH_SHORT).show();
+                } else {
+                    dbManager.save(titulo, establecimiento_id, establecimiento, html, fecha);
+                }
                 break;
         }
         return super.onOptionsItemSelected(item);

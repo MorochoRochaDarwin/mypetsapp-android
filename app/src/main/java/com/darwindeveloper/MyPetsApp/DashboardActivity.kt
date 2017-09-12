@@ -30,6 +30,8 @@ import com.darwindeveloper.MyPetsApp.api.WebApiClient
 import com.darwindeveloper.MyPetsApp.api.WebService
 import com.darwindeveloper.MyPetsApp.api.responses.UploadResponse
 import com.darwindeveloper.MyPetsApp.fragments.MainFragment
+import com.darwindeveloper.MyPetsApp.fragments.NotificationsFragment
+import com.darwindeveloper.MyPetsApp.fragments.PetFriendlyFragment
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.firebase.storage.FirebaseStorage
 import com.theartofdev.edmodo.cropper.CropImage
@@ -53,6 +55,8 @@ class DashboardActivity : AppCompatActivity() {
     private val REQUEST_CODE_HOVER_PERMISSION = 1000
     private val REQUEST_WRITE_PERMISSION = 1001
     private val REQUEST_CAMERA_PERMISSION = 1002
+    private val REQUEST_FINE_LOCATION_PERMISSION = 1003
+    private val REQUEST_COARSE_LOCATION_PERMISSION = 1004
     private var mPermissionsRequested = false
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
@@ -67,6 +71,18 @@ class DashboardActivity : AppCompatActivity() {
                 ars.putString(MainFragment.USER_ID, user_id)
                 ars.putString(MainFragment.USER_API_TOKEN, api_token)
                 transaction.replace(R.id.dashboard_fragment_container, MainFragment.newInstance(ars))
+                transaction.commit()
+                return@OnNavigationItemSelectedListener true
+            }
+
+
+            R.id.navigation_inbox -> {
+                transaction.replace(R.id.dashboard_fragment_container, NotificationsFragment())
+                transaction.commit()
+                return@OnNavigationItemSelectedListener true
+            }
+            R.id.navigation_petfriendly -> {
+                transaction.replace(R.id.dashboard_fragment_container, PetFriendlyFragment())
                 transaction.commit()
                 return@OnNavigationItemSelectedListener true
             }
@@ -109,7 +125,7 @@ class DashboardActivity : AppCompatActivity() {
 
         if (foto != null) {
             Picasso.with(this)
-                    .load(Constants.WEB_URL+foto)
+                    .load(Constants.WEB_URL + foto)
                     .placeholder(R.drawable.man)
                     .into(dashboard_profile_image);
         }
@@ -196,6 +212,8 @@ class DashboardActivity : AppCompatActivity() {
     fun checkWritePermission(context: Context) {
         val result = ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE)
         val result2 = ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA)
+        val result3 = ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION)
+        val result4 = ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION)
         if (result != PackageManager.PERMISSION_GRANTED) {
             val per = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE)
             requestPermissions(per, REQUEST_WRITE_PERMISSION)
@@ -208,8 +226,20 @@ class DashboardActivity : AppCompatActivity() {
             return
         }
 
+        if (result3 != PackageManager.PERMISSION_GRANTED) {
+            val per = arrayOf(Manifest.permission.ACCESS_FINE_LOCATION)
+            requestPermissions(per, REQUEST_FINE_LOCATION_PERMISSION)
+            return
+        }
 
-        checkDrawOverlayPermission(this)
+        if (result4 != PackageManager.PERMISSION_GRANTED) {
+            val per = arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION)
+            requestPermissions(per, REQUEST_COARSE_LOCATION_PERMISSION)
+            return
+        }
+
+
+        // checkDrawOverlayPermission(this)
     }
 
 

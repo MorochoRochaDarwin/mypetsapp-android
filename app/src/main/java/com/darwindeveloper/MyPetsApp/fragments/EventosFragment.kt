@@ -1,5 +1,6 @@
 package com.darwindeveloper.MyPetsApp.fragments
 
+import android.content.Intent
 import android.os.AsyncTask
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -9,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.darwindeveloper.MyPetsApp.EventActivity
 import com.darwindeveloper.MyPetsApp.R
 import com.darwindeveloper.MyPetsApp.adapters.EventosAdapter
 import com.darwindeveloper.MyPetsApp.api.WebApiClient
@@ -22,7 +24,25 @@ import retrofit2.Response
 /**
  * Created by DARWIN MOROCHO on 24/8/2017.
  */
-class EventosFragment : Fragment() {
+class EventosFragment : Fragment(), EventosAdapter.OnEventsClickListener {
+    override fun onEventClick(cita: Cita) {
+
+        val i = Intent(context, EventActivity::class.java)
+        i.putExtra(EventActivity.CITA_ID, cita.cita_id)
+        i.putExtra(EventActivity.TITULO, cita.motivo)
+        i.putExtra(EventActivity.CREADA, cita.fecha_creada)
+        i.putExtra(EventActivity.FECHA, cita.fecha)
+        i.putExtra(EventActivity.HORA, cita.hora)
+        i.putExtra(EventActivity.DESCR, cita.descripcion)
+        i.putExtra(EventActivity.EST_ID, cita.establecimiento_id)
+        i.putExtra(EventActivity.EST, cita.nombre_establecimiento)
+        i.putExtra(EventActivity.MASCOTA_ID, cita.mascota_id)
+        i.putExtra(EventActivity.MASCOTA_NOMBRE, cita.mascota_nombre)
+        i.putExtra(EventActivity.MASCOTA_FOTO, cita.mascota_foto)
+
+        startActivity(i)
+
+    }
 
     var user_id: String? = null
     var api_token: String? = null
@@ -58,6 +78,7 @@ class EventosFragment : Fragment() {
         rootView = inflater?.inflate(R.layout.fragment_eventos, container, false) as View
 
         adapter = EventosAdapter(context, eventos)
+        adapter?.onEventsClickListener = this
         rootView!!.fe_list.layoutManager = LinearLayoutManager(context)
         rootView!!.fe_list.adapter = adapter
 
@@ -87,12 +108,12 @@ class EventosFragment : Fragment() {
 
                 }
 
-            }else
+            } else
                 Log.i("eventos", "null")
         }
 
         override fun onPreExecute() {
-            Toast.makeText(context, "cargando eventos...", Toast.LENGTH_SHORT).show()
+            // Toast.makeText(context, "cargando eventos...", Toast.LENGTH_SHORT).show()
         }
 
         override fun doInBackground(vararg p0: Void?): Void? {

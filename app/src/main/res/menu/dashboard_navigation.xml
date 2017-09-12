@@ -8,9 +8,9 @@
 
 
     <item
-        android:id="@+id/navigation_veterinarian"
-        android:icon="@drawable/ic_veterinarian"
-        android:title="Clinicas/Establecimientos" />
+        android:id="@+id/navigation_petfriendly"
+        android:icon="@drawable/ic_placeholder"
+        android:title="Pet Friendly" />
 
     <item
         android:id="@+id/navigation_inbox"

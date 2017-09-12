@@ -1,5 +1,6 @@
 package com.darwindeveloper.MyPetsApp.fragments
 
+import android.content.Intent
 import android.support.v4.app.Fragment
 import com.darwindeveloper.MyPetsApp.api.modelos.Establecimiento
 import com.google.firebase.messaging.FirebaseMessaging
@@ -11,6 +12,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.darwindeveloper.MyPetsApp.EstablecimientoActivity
 import com.darwindeveloper.MyPetsApp.R
 import com.darwindeveloper.MyPetsApp.adapters.EstablecimientosAdapter
 import com.darwindeveloper.MyPetsApp.api.WebService
@@ -23,10 +25,23 @@ import retrofit2.Response
 /**
  * Created by DARWIN MOROCHO on 24/8/2017.
  */
-class EstablecimientosFragment : Fragment() {
+class EstablecimientosFragment : Fragment(), EstablecimientosAdapter.OnClickEstListener {
+    override fun onEstClick(est: Establecimiento) {
+
+        val mIntent = Intent(context, EstablecimientoActivity::class.java)
+        mIntent.putExtra(EstablecimientoActivity.USER_ID, user_id)
+        mIntent.putExtra(EstablecimientoActivity.API_TOKEN, api_token)
+        mIntent.putExtra(EstablecimientoActivity.EST_ID, est.establecimiento_id)
+        mIntent.putExtra(EstablecimientoActivity.EST_NOMBRE, est.nombre_establecimiento)
+        mIntent.putExtra(EstablecimientoActivity.EST_ICONO, est.icono)
+
+        startActivity(mIntent)
+
+    }
 
     private var rootView: View? = null
     private var user_id: String? = null
+    private var api_token: String? = null
 
     private var mLoadDatatask: LoadData? = null
 
@@ -36,6 +51,7 @@ class EstablecimientosFragment : Fragment() {
 
     companion object {
         const val USER_ID = "estFr.user_id"
+        const val API_TOKEN = "estFr.api_token"
 
         fun newInstance(args: Bundle): EstablecimientosFragment {
             val fr = EstablecimientosFragment()
@@ -49,6 +65,7 @@ class EstablecimientosFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         user_id = arguments[USER_ID] as String
+        api_token = arguments[API_TOKEN] as String
     }
 
 
@@ -57,6 +74,7 @@ class EstablecimientosFragment : Fragment() {
 
 
         adapter = EstablecimientosAdapter(context, establecimientos)
+        adapter?.onClickEstListener = this
         rootView!!.fes_list.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         rootView!!.fes_list.adapter = adapter
 
