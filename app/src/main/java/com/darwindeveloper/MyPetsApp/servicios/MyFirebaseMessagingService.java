@@ -11,6 +11,8 @@ import android.util.Log;
 
 import com.darwindeveloper.MyPetsApp.NotificacionActivity;
 import com.darwindeveloper.MyPetsApp.R;
+import com.darwindeveloper.MyPetsApp.sqlite.DBHelper;
+import com.darwindeveloper.MyPetsApp.sqlite.DBManager;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
@@ -21,6 +23,8 @@ import java.util.Map;
  */
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
+
+
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
@@ -30,13 +34,18 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
 
         if (remoteMessage.getNotification() != null) {
-            Log.i("FirebaseNotificacion", remoteMessage.getNotification().getBody());
+            // Log.i("FirebaseNotificacion", remoteMessage.getNotification().getBody());
             mostrarNotificacion(remoteMessage.getNotification().getTitle(), remoteMessage.getNotification().getBody(), remoteMessage.getData());
 
         }
 
         if (remoteMessage.getData().size() > 0) {
-            Log.i("FirebaseData", "" + remoteMessage.getData());
+            //  Log.i("FirebaseData", "" + remoteMessage.getData());
+            Map<String, String> data = remoteMessage.getData();
+            DBManager dbManager = new DBManager(this);
+            dbManager.save(data.get("titulo"), data.get("tipo"), data.get("establecimiento_id"), data.get("nombre_establecimiento"), data.get("html"), data.get("publicado"));
+
+
         }
     }
 
@@ -64,5 +73,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(0, notificationBuilder.build());
+
+
     }
 }

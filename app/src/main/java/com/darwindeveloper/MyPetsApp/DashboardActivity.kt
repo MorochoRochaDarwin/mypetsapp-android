@@ -13,7 +13,6 @@ import kotlinx.android.synthetic.main.activity_dashboard.*
 import android.preference.PreferenceManager
 import android.support.design.widget.BottomNavigationView
 import com.darwindeveloper.MyPetsApp.api.Constants
-import com.darwindeveloper.MyPetsApp.fragments.ProfileFragment
 import com.squareup.picasso.Picasso
 import android.content.Intent
 import android.annotation.TargetApi
@@ -26,12 +25,11 @@ import android.os.Build
 import android.provider.MediaStore
 import android.provider.Settings
 import android.support.v4.content.ContextCompat
+import android.util.Log
 import com.darwindeveloper.MyPetsApp.api.WebApiClient
 import com.darwindeveloper.MyPetsApp.api.WebService
 import com.darwindeveloper.MyPetsApp.api.responses.UploadResponse
-import com.darwindeveloper.MyPetsApp.fragments.MainFragment
-import com.darwindeveloper.MyPetsApp.fragments.NotificationsFragment
-import com.darwindeveloper.MyPetsApp.fragments.PetFriendlyFragment
+import com.darwindeveloper.MyPetsApp.fragments.*
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.firebase.storage.FirebaseStorage
 import com.theartofdev.edmodo.cropper.CropImage
@@ -77,7 +75,7 @@ class DashboardActivity : AppCompatActivity() {
 
 
             R.id.navigation_inbox -> {
-                transaction.replace(R.id.dashboard_fragment_container, NotificationsFragment())
+                transaction.replace(R.id.dashboard_fragment_container, MainNotificationsFragment())
                 transaction.commit()
                 return@OnNavigationItemSelectedListener true
             }
@@ -172,7 +170,10 @@ class DashboardActivity : AppCompatActivity() {
                 builder.setTitle("Cerrar sesión y salir de la app?")
                 builder.setPositiveButton("SI", DialogInterface.OnClickListener { dialogInterface, i ->
                     val preferences = PreferenceManager.getDefaultSharedPreferences(this@DashboardActivity)
-                    preferences.edit().clear().apply()
+                    val edit = preferences.edit()
+                    edit.putString(Constants.USER_ID, null)
+                    edit.putString(Constants.USER_API_TOKEN, null)
+                    edit.apply()
                     finishAffinity()
                 })
                 builder.setNegativeButton("NO", DialogInterface.OnClickListener { dialogInterface, i ->
@@ -185,7 +186,10 @@ class DashboardActivity : AppCompatActivity() {
 
 
             R.id.menu_settings -> {
-                Toast.makeText(this@DashboardActivity, "settings", Toast.LENGTH_SHORT).show()
+                val i = Intent(this, PasswordActivity::class.java)
+                i.putExtra(PasswordActivity.USER_ID, user_id)
+                i.putExtra(PasswordActivity.API_TOKEN, api_token)
+                startActivity(i)
                 return true
             }
         }
@@ -340,6 +344,7 @@ class DashboardActivity : AppCompatActivity() {
                     }
 
                     override fun onFailure(call: Call<UploadResponse>?, t: Throwable?) {
+                        Log.i("errorimg",t?.message)
                         Toast.makeText(this@DashboardActivity, "Error; intente mas tarde", Toast.LENGTH_SHORT).show()
                     }
 

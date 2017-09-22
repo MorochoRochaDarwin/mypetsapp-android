@@ -190,6 +190,8 @@ class LoginFragment : Fragment() {
         }
 
         override fun onFailure(call: Call<UserResponse>, t: Throwable) {
+            Log.i("errorl", t.message)
+            Toast.makeText(context, "Error intente nuevamente", Toast.LENGTH_SHORT).show()
             mAuthTask = null
         }
     }

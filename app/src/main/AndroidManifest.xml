@@ -70,8 +70,9 @@
         <activity
             android:name=".MascotaActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".EstablecimientoActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".EstablecimientoActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".AgendarCitaActivity"
             android:label="@string/title_activity_agendar_cita"
@@ -82,6 +83,7 @@
         <activity
             android:name=".EventActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".PasswordActivity"></activity>
     </application>
 
 </manifest>

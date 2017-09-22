@@ -30,7 +30,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/item_mascota_foto"
-        android:background="@drawable/ribbon2p"
+        android:background="@color/colorAccent"
         android:gravity="center"
         android:maxLines="1"
         android:text="Oso"

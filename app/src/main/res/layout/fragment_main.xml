@@ -16,15 +16,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:background="@drawable/ribbon2p"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@color/colorAccent"
             android:text="Tus mascotas"
             android:gravity="center_horizontal"
             android:textColor="#fff" />
 
         <FrameLayout
             android:id="@+id/fragment_container_mascotas"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -51,9 +53,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:background="@drawable/ribbon2b"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@color/colorPrimary"
             android:text="Tus citas o eventos"
             android:gravity="center_horizontal"
             android:textColor="#fff" />

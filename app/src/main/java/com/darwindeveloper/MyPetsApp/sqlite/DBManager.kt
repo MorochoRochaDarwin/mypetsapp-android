@@ -20,6 +20,7 @@ class DBManager(private val context: Context) {
     }
 
 
+
     public fun getAll(): ArrayList<Notification> {
         val list = ArrayList<Notification>()
 
@@ -35,12 +36,13 @@ class DBManager(private val context: Context) {
 
                 val id = cursor.getInt(cursor.getColumnIndex("id"))
                 val titulo = cursor.getString(cursor.getColumnIndex("titulo"))
+                val tipo = cursor.getString(cursor.getColumnIndex("tipo"))
                 val remitente_id = cursor.getString(cursor.getColumnIndex("remitente_id"))
                 val remitente = cursor.getString(cursor.getColumnIndex("remitente"))
                 val html = cursor.getString(cursor.getColumnIndex("html"))
                 val created_at = cursor.getString(cursor.getColumnIndex("created_at"))
 
-                list.add(Notification(id, titulo, remitente_id, remitente, html, created_at))
+                list.add(Notification(id, titulo, tipo, remitente_id, remitente, html, created_at))
 
             } while (cursor.moveToNext())
 
@@ -52,7 +54,7 @@ class DBManager(private val context: Context) {
     }
 
 
-    public fun save(titulo: String, remitente_id: String, remitente: String, html: String, fecha: String) {
+    public fun save(titulo: String, tipo: String, remitente_id: String, remitente: String, html: String, fecha: String) {
 
         val values = ContentValues()
 
@@ -61,6 +63,7 @@ class DBManager(private val context: Context) {
 
         values.put("html", html)
         values.put("titulo", titulo)
+        values.put("tipo", tipo)
         values.put("created_at", fecha)
 
         // val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime())
@@ -68,9 +71,10 @@ class DBManager(private val context: Context) {
 
         val id = db?.insert(NotificationEntry.TABLE_NAME, null, values)
         if ("$id" != "-1") {
-            Toast.makeText(context, "Guardado con exito", Toast.LENGTH_SHORT).show()
-        } else
-            Toast.makeText(context, "Error intente nuevamente", Toast.LENGTH_SHORT).show()
+            Log.i("sqlsave", "Guardado con exito")
+        } else {
+            Log.i("sqlsave", "Guardado error")
+        }
 
 
     }
@@ -79,6 +83,21 @@ class DBManager(private val context: Context) {
     public fun delete(id: String): Int {
         val ars = arrayOf(id);
         return db!!.delete(NotificationEntry.TABLE_NAME, "id = ? ", ars);
+    }
+
+
+    public fun getNums(): Array<Int> {
+
+
+        val arr = arrayOf(0, 0, 0, 0)
+
+        val sql = "select * from ${NotificationEntry.TABLE_NAME} where tipo='Dato curioso'"
+        val c = db!!.rawQuery(sql, null)
+        arr[3] = c.count
+        c.close()
+
+        return arr
+
     }
 
 }

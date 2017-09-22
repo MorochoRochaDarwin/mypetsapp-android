@@ -84,9 +84,11 @@
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="0dp"
         android:layout_marginStart="0dp"
-        android:background="?android:attr/windowBackground"
+        android:background="@color/colorPrimary"
         app:elevation="10dp"
         app:layout_anchorGravity="bottom"
+        app:itemIconTint="#fff"
+        app:itemTextColor="#fff"
         app:menu="@menu/dashboard_navigation" />
 
 </RelativeLayout>

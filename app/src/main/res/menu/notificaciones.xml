@@ -7,9 +7,5 @@
         android:icon="@drawable/ic_pdf_w"
         android:title="Guardar PDF"
         app:showAsAction="always" />
-    <item
-        android:id="@+id/action_save"
-        android:icon="@drawable/ic_save"
-        android:title="Guardar"
-        app:showAsAction="always" />
+
 </menu>

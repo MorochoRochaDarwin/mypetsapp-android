@@ -24,5 +24,18 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, NotificationEntry.T
         onUpgrade(db, oldVersion, newVersion)
     }
 
+    companion object {
+        var instance: DBHelper? = null
+
+        @Synchronized fun getHelper(context: Context): DBHelper {
+            if (instance == null)
+                instance = DBHelper(context)
+
+            return instance as DBHelper
+        }
+    }
+
+
+
 
 }

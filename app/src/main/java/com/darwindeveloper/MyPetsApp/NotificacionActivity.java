@@ -115,13 +115,6 @@ public class NotificacionActivity extends AppCompatActivity {
                 break;
 
 
-            case R.id.action_save:
-                if (guardado) {
-                    Toast.makeText(this, "Error: Guardado anteriormente", Toast.LENGTH_SHORT).show();
-                } else {
-                    dbManager.save(titulo, establecimiento_id, establecimiento, html, fecha);
-                }
-                break;
         }
         return super.onOptionsItemSelected(item);
     }

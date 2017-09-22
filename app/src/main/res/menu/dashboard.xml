@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:icon="@drawable/ic_controlsw"
-        android:title="Ajustes"
+        android:icon="@drawable/ic_keyw"
+        android:title="Cambiar contraseña"
         android:id="@+id/menu_settings"
         app:showAsAction="always" />
 

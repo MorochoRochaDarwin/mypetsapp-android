@@ -66,57 +66,25 @@
                     android:paddingRight="20dp"
                     android:paddingTop="@dimen/activity_vertical_margin">
 
-                    <android.support.design.widget.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <EditText
-                            android:id="@+id/email"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="Email"
-                            android:inputType="textEmailAddress"
-                            android:maxLines="1"
-                            android:singleLine="true" />
-
-                    </android.support.design.widget.TextInputLayout>
-
-                    <android.support.design.widget.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <EditText
-                            android:id="@+id/password"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="Contraseña"
-                            android:imeActionId="6"
-                            android:imeOptions="actionUnspecified"
-                            android:inputType="textPassword"
-                            android:maxLines="1"
-                            android:singleLine="true" />
-
-                    </android.support.design.widget.TextInputLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:gravity="right"
-                        android:orientation="horizontal">
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
 
-                        <Button
-                            android:id="@+id/email_sign_in_button"
-                            style="@style/Widget.AppCompat.Button.Borderless.Colored"
-                            android:layout_width="wrap_content"
+                        <TextView
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:drawableLeft="@drawable/ic_tick"
-                            android:drawableTint="@color/colorPrimary"
-                            android:text="INGRESAR"
-                            android:textColor="@color/colorPrimary"
+                            android:text="NUESTRO COMPROMISO"
                             android:textStyle="bold" />
 
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Convencidos de que cada cliente del establecimeinto veterinario es valioso, MyPetsApp dedica todo su esfuerzo y conocimiento para ofrecer un servicio personalizado, honesto, profesional y confiable a los centros veterinarios del país a fin de que sus clientes tambien tengan un servicio orientado a la excelencia y por eso queremos trabajar junto a ti para mejorar esa experiencia del cliente en tu centro veterinario, enfocados siempre en el bienestar de las mascotas." />
+
                     </LinearLayout>
+
 
                 </LinearLayout>
 
@@ -125,14 +93,5 @@
         </ScrollView>
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:paddingBottom="15dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:text="NOTA: Si es la primera vez que inicias sesión utiliza tu número de Cédula o pasaporte" />
 
 </RelativeLayout>

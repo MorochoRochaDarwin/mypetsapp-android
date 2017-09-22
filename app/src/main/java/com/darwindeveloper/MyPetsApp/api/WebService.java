@@ -37,6 +37,13 @@ public interface WebService {
                                  @Field("password") String password,
                                  @Field("firebase_token") String firebase_token);
 
+    @POST("password")
+    @FormUrlEncoded
+    Call<DefaultResponse> change_password(@Field("user_id") String user_id,
+                                          @Field("api_token") String api_token,
+                                          @Field("pass") String password,
+                                          @Field("npass") String npassword);
+
     @POST("password-reset")
     @FormUrlEncoded
     Call<PasswordResetResponse> password_reset(@Field("email") String email);
