@@ -6,15 +6,15 @@ package com.darwindeveloper.MyPetsApp.api.modelos
 
 class Establecimiento {
 
-    val establecimiento_id: String? = null
-    val codigo: String? = null
-    val nombre_establecimiento: String? = null
-    val user_id: String? = null
-    val tipo: String? = null
-    val icono: String? = null
+    var establecimiento_id: String? = null
+    var codigo: String? = null
+    var nombre_establecimiento: String? = null
+    var user_id: String? = null
+    var tipo: String? = null
+    var icono: String? = null
     val portada: String? = null
-    val provincia: String? = null
-    val ciudad: String? = null
-    val sector: String? = null
+    var provincia: String? = null
+    var ciudad: String? = null
+    var sector: String? = null
     val addr: String? = null
 }

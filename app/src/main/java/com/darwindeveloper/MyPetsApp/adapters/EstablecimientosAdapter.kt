@@ -2,6 +2,7 @@ package com.darwindeveloper.MyPetsApp.adapters
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,11 +35,19 @@ class EstablecimientosAdapter(private val context: Context, private val establec
         holder!!.itemView.item_e_id.text = "ID: ${est.establecimiento_id}"
         holder.itemView.item_e_nombre.text = est.nombre_establecimiento
 
-        if (est.icono != null) {
+        Log.i("nombre", est.nombre_establecimiento)
+
+        if (est.establecimiento_id == "-1") {
+            holder.itemView.item_e_id.visibility=View.GONE
+            holder.itemView.item_e_foto.setImageDrawable(context.resources.getDrawable(R.drawable.add))
+        } else if (est.icono != null) {
+            holder.itemView.item_e_id.visibility=View.VISIBLE
             Picasso.with(context)
                     .load(Constants.WEB_URL + est.icono)
                     .into(holder.itemView.item_e_foto)
         }
+
+
 
         holder.itemView.setOnClickListener {
             onClickEstListener?.onEstClick(est)

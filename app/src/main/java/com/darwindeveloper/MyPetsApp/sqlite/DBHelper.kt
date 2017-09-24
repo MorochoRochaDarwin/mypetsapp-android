@@ -12,13 +12,19 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, NotificationEntry.T
 
     override fun onCreate(db: SQLiteDatabase?) {
         db?.execSQL(NotificationEntry.SQL_CREATE)
+        db?.execSQL(EstEntry.SQL_CREATE)
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
         db?.execSQL(NotificationEntry.SQL_DELETE_TABLE);//eliminamos la tabla usuarios
+        db?.execSQL(EstEntry.SQL_DELETE_TABLE);//eliminamos la tabla usuarios
         onCreate(db);
     }
 
+
+    public fun recreate(db: SQLiteDatabase?){
+            onCreate(db)
+    }
 
     override fun onDowngrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
         onUpgrade(db, oldVersion, newVersion)
@@ -34,8 +40,6 @@ class DBHelper(context: Context) : SQLiteOpenHelper(context, NotificationEntry.T
             return instance as DBHelper
         }
     }
-
-
 
 
 }

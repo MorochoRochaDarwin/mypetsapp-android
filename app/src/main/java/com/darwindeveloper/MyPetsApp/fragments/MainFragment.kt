@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.darwindeveloper.MyPetsApp.R
 import android.support.v4.widget.NestedScrollView
+import com.darwindeveloper.MyPetsApp.sqlite.DBManager
 import kotlinx.android.synthetic.main.fragment_main.view.*
 
 
@@ -18,6 +19,7 @@ class MainFragment : Fragment() {
 
     private var user_id: String? = null
     private var api_token: String? = null
+
 
     companion object {
         const val USER_ID = "frmain.user_id"

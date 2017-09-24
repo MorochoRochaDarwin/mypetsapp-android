@@ -30,6 +30,9 @@ import com.darwindeveloper.MyPetsApp.api.WebApiClient
 import com.darwindeveloper.MyPetsApp.api.WebService
 import com.darwindeveloper.MyPetsApp.api.responses.UploadResponse
 import com.darwindeveloper.MyPetsApp.fragments.*
+import com.darwindeveloper.MyPetsApp.sqlite.DBHelper
+import com.darwindeveloper.MyPetsApp.sqlite.EstEntry
+import com.darwindeveloper.MyPetsApp.sqlite.NotificationEntry
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.firebase.storage.FirebaseStorage
 import com.theartofdev.edmodo.cropper.CropImage
@@ -174,6 +177,16 @@ class DashboardActivity : AppCompatActivity() {
                     edit.putString(Constants.USER_ID, null)
                     edit.putString(Constants.USER_API_TOKEN, null)
                     edit.apply()
+
+
+                    val dbh = DBHelper(this)
+                    val db = dbh.writableDatabase
+                    db?.execSQL(NotificationEntry.SQL_DELETE_TABLE);//eliminamos la tabla usuarios
+                    db?.execSQL(EstEntry.SQL_DELETE_TABLE);//eliminamos la tabla usuarios
+                    dbh.recreate(db)
+
+
+
                     finishAffinity()
                 })
                 builder.setNegativeButton("NO", DialogInterface.OnClickListener { dialogInterface, i ->
@@ -344,7 +357,7 @@ class DashboardActivity : AppCompatActivity() {
                     }
 
                     override fun onFailure(call: Call<UploadResponse>?, t: Throwable?) {
-                        Log.i("errorimg",t?.message)
+                        Log.i("errorimg", t?.message)
                         Toast.makeText(this@DashboardActivity, "Error; intente mas tarde", Toast.LENGTH_SHORT).show()
                     }
 

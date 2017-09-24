@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
     <LinearLayout
@@ -16,92 +17,217 @@
             android:orientation="horizontal">
 
 
-            <RelativeLayout
-                android:id="@+id/fmn_medico"
+            <android.support.v7.widget.CardView
+                app:cardUseCompatPadding="true"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="20dp"
-                style="@style/Base.Widget.AppCompat.Button.Borderless"
+                android:layout_height="match_parent"
                 android:layout_weight="1">
 
-
-
-                <LinearLayout
+                <RelativeLayout
+                    android:id="@+id/fmn_medico"
+                    style="@style/Base.Widget.AppCompat.Button.Borderless"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:padding="10dp">
 
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:adjustViewBounds="true"
-                        android:src="@drawable/vet" />
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="MEDICO"
-                        android:textColor="@color/colorPrimary"
-                        android:textStyle="bold" />
-                </LinearLayout>
+                        android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/fmn_text_num_medico"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/ribbonco"
-                    android:layout_alignParentRight="true"
-                    android:gravity="center"
-                    android:padding="10dp"
-                    android:text="0"
-                    android:textColor="#fff"
-                    android:textSize="14sp" />
+                        <ImageView
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/veterinario" />
 
-            </RelativeLayout>
-            <RelativeLayout
-                android:id="@+id/fmn_promociones"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="20dp"
-                style="@style/Base.Widget.AppCompat.Button.Borderless"
-                android:layout_weight="1">
-
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:adjustViewBounds="true"
-                        android:src="@drawable/sale" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="VETERINARIO"
+                            android:textColor="@color/colorPrimary"
+                            android:textStyle="bold" />
+                    </LinearLayout>
 
                     <TextView
+                        android:id="@+id/fmn_text_num_medico"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:background="@drawable/ribbonco"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="0"
+                        android:textColor="#fff"
+                        android:textSize="14sp" />
+
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:cardUseCompatPadding="true"
+                android:layout_weight="1">
+
+                <RelativeLayout
+                    android:id="@+id/fmn_promociones"
+                    style="@style/Base.Widget.AppCompat.Button.Borderless"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
+
+
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="PROMOCIONES, DESCUENTOS Y OFERTAS"
-                        android:textColor="@color/colorPrimary"
-                        android:textStyle="bold" />
-                </LinearLayout>
+                        android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/fmn_text_num_promociones"
-                    android:layout_width="wrap_content"
+                        <ImageView
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/promociones" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:maxLines="2"
+                            android:text="DESCUENTOS"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="11sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/fmn_text_num_promociones"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:background="@drawable/ribbonco"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="0"
+                        android:textColor="#fff"
+                        android:textSize="14sp" />
+
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:cardUseCompatPadding="true"
+                android:layout_weight="1">
+
+                <RelativeLayout
+                    android:id="@+id/fmn_publicidad"
+                    style="@style/Base.Widget.AppCompat.Button.Borderless"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/ribbonco"
-                    android:layout_alignParentRight="true"
-                    android:gravity="center"
-                    android:padding="10dp"
-                    android:text="0"
-                    android:textColor="#fff"
-                    android:textSize="14sp" />
+                    android:padding="10dp">
 
-            </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/publicidad" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="PUBLICIDAD"
+                            android:textColor="@color/colorPrimary"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/fmn_text_num_publicidad"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:background="@drawable/ribbonco"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="0"
+                        android:textColor="#fff"
+                        android:textSize="14sp" />
+
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:cardUseCompatPadding="true"
+                android:layout_weight="1">
+
+                <RelativeLayout
+                    android:id="@+id/fmn_dato"
+                    style="@style/Base.Widget.AppCompat.Button.Borderless"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="10dp">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/news" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="ULTIMAS NOTICIAS"
+                            android:textColor="@color/colorPrimary"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/fmn_text_num_dato"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:background="@drawable/ribbonco"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="0"
+                        android:textColor="#fff"
+                        android:textSize="14sp" />
+
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
 
         </LinearLayout>
 
@@ -113,92 +239,56 @@
             android:orientation="horizontal">
 
 
-            <RelativeLayout
-                android:id="@+id/fmn_publicidad"
+            <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="20dp"
-                style="@style/Base.Widget.AppCompat.Button.Borderless"
-                android:layout_weight="1">
+                android:layout_height="match_parent"
+                app:cardUseCompatPadding="true">
 
-
-
-                <LinearLayout
+                <RelativeLayout
+                    android:id="@+id/fmn_event"
+                    style="@style/Base.Widget.AppCompat.Button.Borderless"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:padding="10dp">
 
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:adjustViewBounds="true"
-                        android:src="@drawable/poster" />
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="PUBLICIDAD"
-                        android:textColor="@color/colorPrimary"
-                        android:textStyle="bold" />
-                </LinearLayout>
+                        android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/fmn_text_num_publicidad"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/ribbonco"
-                    android:layout_alignParentRight="true"
-                    android:gravity="center"
-                    android:text="0"
-                    android:padding="10dp"
-                    android:textColor="#fff"
-                    android:textSize="14sp" />
+                        <ImageView
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/events" />
 
-            </RelativeLayout>
-            <RelativeLayout
-                android:id="@+id/fmn_dato"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="20dp"
-                style="@style/Base.Widget.AppCompat.Button.Borderless"
-                android:layout_weight="1">
-
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:adjustViewBounds="true"
-                        android:src="@drawable/thinking" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="EVENTOS"
+                            android:textColor="@color/colorPrimary"
+                            android:textStyle="bold" />
+                    </LinearLayout>
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:id="@+id/fmn_text_num_event"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:background="@drawable/ribbonco"
                         android:gravity="center"
-                        android:text="DATO CURIOSO"
-                        android:textColor="@color/colorPrimary"
-                        android:textStyle="bold" />
-                </LinearLayout>
+                        android:padding="10dp"
+                        android:text="0"
+                        android:textColor="#fff"
+                        android:textSize="14sp" />
 
-                <TextView
-                    android:id="@+id/fmn_text_num_dato"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/ribbonco"
-                    android:layout_alignParentRight="true"
-                    android:gravity="center"
-                    android:padding="10dp"
-                    android:text="0"
-                    android:textColor="#fff"
-                    android:textSize="14sp" />
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
 
-            </RelativeLayout>
+
 
         </LinearLayout>
 

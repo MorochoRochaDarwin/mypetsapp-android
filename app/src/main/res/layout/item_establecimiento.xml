@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
+        android:padding="4dp"
         android:src="@mipmap/ic_launcher" />
 
     <TextView
@@ -30,10 +31,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/item_e_foto"
-        android:background="@drawable/ribbon2g"
+        android:background="#028871"
         android:gravity="center"
         android:maxLines="2"
         android:text="Oso"
+        android:minHeight="30dp"
         android:textColor="#fff"
         android:textSize="10sp"
         android:textStyle="bold" />

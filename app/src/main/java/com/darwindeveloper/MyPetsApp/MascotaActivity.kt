@@ -111,13 +111,13 @@ class MascotaActivity : AppCompatActivity(), EstablecimientosAdapter.OnClickEstL
 
 
 
-        adapterEstablecimientos = EstablecimientosAdapter(this@MascotaActivity, establecimientos)
-        adapterEstablecimientos?.onClickEstListener = this
+       /* adapterEstablecimientos = EstablecimientosAdapter(this@MascotaActivity, establecimientos)
+        adapterEstablecimientos?.onClickEstListener = this*/
         adapterEvents = EventosMascotaAdapter(this@MascotaActivity, eventos)
         adapterEvents?.onEventsPetClickListener=this
-        bsm_establecimientos.layoutManager = LinearLayoutManager(this@MascotaActivity, LinearLayoutManager.HORIZONTAL, false)
+       // bsm_establecimientos.layoutManager = LinearLayoutManager(this@MascotaActivity, LinearLayoutManager.HORIZONTAL, false)
         bsm_list_eventos.layoutManager = LinearLayoutManager(this@MascotaActivity)
-        bsm_establecimientos.adapter = adapterEstablecimientos
+       // bsm_establecimientos.adapter = adapterEstablecimientos
         bsm_list_eventos.adapter = adapterEvents
 
 
@@ -234,10 +234,10 @@ class MascotaActivity : AppCompatActivity(), EstablecimientosAdapter.OnClickEstL
         dataPetTask?.execute()
 
 
-        if (mLoadDatatask != null)
+        /*if (mLoadDatatask != null)
             mLoadDatatask = null
         mLoadDatatask = LoadData()
-        mLoadDatatask?.execute()
+        mLoadDatatask?.execute()*/
 
 
         if (mLoadcDatatask != null)
@@ -245,6 +245,15 @@ class MascotaActivity : AppCompatActivity(), EstablecimientosAdapter.OnClickEstL
         mLoadcDatatask = LoadcTask()
         mLoadcDatatask?.execute()
 
+
+
+        am_btn_carnet.setOnClickListener {
+            val i=Intent(this,CarnetActivity::class.java)
+            i.putExtra(CarnetActivity.USER_ID,user_id)
+            i.putExtra(CarnetActivity.MASCOTA_ID,mascota_id)
+            i.putExtra(CarnetActivity.API_TOKEN,api_token)
+            startActivity(i)
+        }
 
     }
 

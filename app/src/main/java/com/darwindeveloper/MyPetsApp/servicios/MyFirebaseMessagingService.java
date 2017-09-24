@@ -1,9 +1,11 @@
 package com.darwindeveloper.MyPetsApp.servicios;
 
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
@@ -33,11 +35,11 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         Log.i("FirebaseMessage", "mensaje de " + message);
 
 
-        if (remoteMessage.getNotification() != null) {
+     /*   if (remoteMessage.getNotification() != null) {
             // Log.i("FirebaseNotificacion", remoteMessage.getNotification().getBody());
             mostrarNotificacion(remoteMessage.getNotification().getTitle(), remoteMessage.getNotification().getBody(), remoteMessage.getData());
 
-        }
+        }*/
 
         if (remoteMessage.getData().size() > 0) {
             //  Log.i("FirebaseData", "" + remoteMessage.getData());
@@ -46,6 +48,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             dbManager.save(data.get("titulo"), data.get("tipo"), data.get("establecimiento_id"), data.get("nombre_establecimiento"), data.get("html"), data.get("publicado"));
 
 
+           mostrarNotificacion(data.get("titulo"),data.get("tipo"),data);
         }
     }
 

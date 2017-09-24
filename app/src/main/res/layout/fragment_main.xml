@@ -35,9 +35,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:background="@drawable/ribbon2g"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="#01a28d"
             android:text="Clinicas o Establecimientos"
             android:gravity="center_horizontal"
             android:textColor="#fff" />
@@ -45,6 +45,8 @@
 
         <FrameLayout
             android:id="@+id/fragment_container_establecimientos"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -62,6 +64,8 @@
 
 
         <FrameLayout
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp"
             android:id="@+id/fragment_container_eventos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

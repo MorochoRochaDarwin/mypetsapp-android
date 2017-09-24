@@ -8,6 +8,7 @@ import android.support.v7.widget.GridLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.darwindeveloper.MyPetsApp.PetFriendlyActivity
 import com.darwindeveloper.MyPetsApp.R
 import com.darwindeveloper.MyPetsApp.SitiosActivity
 import com.darwindeveloper.MyPetsApp.adapters.PetFriendlyAdapter
@@ -21,9 +22,9 @@ class PetFriendlyFragment : Fragment(), PetFriendlyAdapter.OnItemPetFriendlyList
     override fun onClickPetFriendly(item: ItemPetFriendly) {
 
 
-        val intent = Intent(context, SitiosActivity::class.java)
-        intent.putExtra(SitiosActivity.CATEGORIA, item.text)
-        intent.putExtra(SitiosActivity.ICON, item.icon)
+        val intent = Intent(context, PetFriendlyActivity::class.java)
+        intent.putExtra(PetFriendlyActivity.CATEGORIA, item.text)
+        intent.putExtra(PetFriendlyActivity.ICON, item.image)
         startActivity(intent)
     }
 

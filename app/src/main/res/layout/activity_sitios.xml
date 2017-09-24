@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -13,31 +13,72 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <LinearLayout
+
+    <!-- bottom sheet layout -->
+    <RelativeLayout
+        android:id="@+id/linear_layout_bottom_sheet"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_height="220dp"
         android:background="#fff"
-        android:orientation="horizontal">
+        android:elevation="10dp"
+        app:behavior_hideable="true"
+        app:behavior_peekHeight="80dp"
+        app:layout_behavior="@string/bottom_sheet_behavior">
 
-        <Spinner
-            android:id="@+id/as_spinner_provincias"
+
+        <LinearLayout
+            android:id="@+id/as_main"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:background="@color/colorPrimary"
+            android:orientation="horizontal"
+            android:padding="10dp">
 
-        <Spinner
-            android:id="@+id/as_spinner_ciudades"
+            <ImageView
+                android:id="@+id/as_icono"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="4.5"
+                android:adjustViewBounds="true"
+                android:src="@mipmap/ic_launcher" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <TextView
+                    android:id="@+id/as_nombre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#fff"
+                    android:textSize="20sp"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:id="@+id/as_tipo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#fff"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+        <WebView
+            android:id="@+id/as_webview"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-        <Spinner
-            android:id="@+id/as_spinner_sectores"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_height="match_parent"
+            android:layout_below="@id/as_main" />
 
 
-    </LinearLayout>
+    </RelativeLayout>
 
-</RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout>

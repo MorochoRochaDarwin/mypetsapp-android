@@ -24,7 +24,23 @@ import kotlinx.android.synthetic.main.fragment_notifications.view.*
  * Created by DARWIN MOROCHO on 4/9/2017.
  */
 class NotificationsFragment : Fragment(), NotificacionesAdapter.OnNotificacionesListener {
+
+
+    companion object {
+        const val TIPO = "nf.tipo"
+
+        fun newInstance(args: Bundle): NotificationsFragment {
+            val f = NotificationsFragment()
+            f.arguments = args
+            return f
+        }
+    }
+
+    var tipo: String? = null
+
     override fun verNotificacion(notificacion: Notification) {
+
+        dbm!!.visto(notificacion.id)
 
         val mIntent = Intent(context, NotificacionActivity::class.java)
         mIntent.putExtra("guardado", true)
@@ -69,6 +85,11 @@ class NotificationsFragment : Fragment(), NotificacionesAdapter.OnNotificaciones
     private var loadtask: LoadData? = null
     private var dbm: DBManager? = null
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        tipo = arguments.getString(TIPO, "medico")
+    }
+
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         rootView = inflater?.inflate(R.layout.fragment_notifications, container, false)
         dbm = DBManager(context)
@@ -102,9 +123,16 @@ class NotificationsFragment : Fragment(), NotificacionesAdapter.OnNotificaciones
         override fun doInBackground(vararg p0: Void?): Void? {
 
 
-            val n = dbm!!.getAll()
+            if (tipo != "none") {
+                val n = dbm!!.getQhere("tipo='${tipo}'")
+                notificaciones.addAll(n)
+            } else {
+                val n = dbm!!.getQhere("tipo!='Veterinario' and tipo!='Publicidad' and tipo!='Descuentos' and tipo!='Ultimas noticias'")
+                notificaciones.addAll(n)
+            }
 
-            notificaciones.addAll(n)
+
+
 
 
 

@@ -83,7 +83,21 @@
         <activity
             android:name=".EventActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".PasswordActivity"></activity>
+        <activity android:name=".PasswordActivity" />
+        <activity
+            android:name=".NotificacionesActivity"
+            android:label="@string/title_activity_notificaciones"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".CarnetActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_carnet"
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme"></activity>
+        <activity
+            android:name=".PetFriendlyActivity"
+            android:label="@string/title_activity_pet_friendly"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>
