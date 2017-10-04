@@ -93,11 +93,14 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_carnet"
             android:screenOrientation="landscape"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".PetFriendlyActivity"
             android:label="@string/title_activity_pet_friendly"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".SelectLoginActivity" />
+        <activity android:name=".QrActivity" />
+        <activity android:name=".DataUserActivity"></activity>
     </application>
 
 </manifest>

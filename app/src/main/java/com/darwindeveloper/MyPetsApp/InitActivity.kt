@@ -45,7 +45,7 @@ class InitActivity : Activity() {
 
 
     private fun lauchMainActivity() {
-        startActivity(Intent(this@InitActivity, MainActivity::class.java))
+        startActivity(Intent(this@InitActivity, SelectLoginActivity::class.java))
         finish()
     }
 
@@ -84,9 +84,13 @@ class InitActivity : Activity() {
             if (checkTokenResponse != null) {
                 if (checkTokenResponse.status == 200) {
 
-                    val est_id = preferences?.getString(Constants.ESTABLECIMIENTO_ID, null)
-                    if (est_id != null) {
-
+                    val ready = preferences?.getBoolean(Constants.DATA_READY, false)
+                    if (ready!! == false) {
+                        val intent = Intent(this@InitActivity, DataUserActivity::class.java)
+                        intent.putExtra(DataUserActivity.USER_ID, mUserId)
+                        intent.putExtra(DataUserActivity.API_TOKEN, mApiToken)
+                        startActivity(intent)
+                        finish()
                     } else {
                         val intent = Intent(this@InitActivity, DashboardActivity::class.java)
                         intent.putExtra(DashboardActivity.USER_ID, mUserId)

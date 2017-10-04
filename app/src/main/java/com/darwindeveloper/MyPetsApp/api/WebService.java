@@ -8,6 +8,7 @@ import com.darwindeveloper.MyPetsApp.api.responses.CheckTokenResponse;
 import com.darwindeveloper.MyPetsApp.api.responses.ClientResponse;
 import com.darwindeveloper.MyPetsApp.api.responses.DefaultResponse;
 import com.darwindeveloper.MyPetsApp.api.responses.PasswordResetResponse;
+import com.darwindeveloper.MyPetsApp.api.responses.QRResponse;
 import com.darwindeveloper.MyPetsApp.api.responses.UploadResponse;
 import com.darwindeveloper.MyPetsApp.api.responses.UserResponse;
 
@@ -36,6 +37,13 @@ public interface WebService {
     Call<UserResponse> api_login(@Field("email") String email,
                                  @Field("password") String password,
                                  @Field("firebase_token") String firebase_token);
+
+
+    @POST("login-qr")
+    @FormUrlEncoded
+    Call<QRResponse> loginQR(@Field("user_id") String email,
+                             @Field("est_id") String password,
+                             @Field("firebase_token") String firebase_token);
 
     @POST("password")
     @FormUrlEncoded
@@ -89,7 +97,7 @@ public interface WebService {
     @POST("datoscliente")
     @FormUrlEncoded
     Call<ClientResponse> datoscliente(@Field("user_id") String user_id,
-                                 @Field("api_token") String api_token);
+                                      @Field("api_token") String api_token);
 
 
     @GET("provincias")

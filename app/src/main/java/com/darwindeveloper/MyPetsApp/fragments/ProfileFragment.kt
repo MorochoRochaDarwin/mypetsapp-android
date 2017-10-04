@@ -404,9 +404,9 @@ class ProfileFragment : Fragment() {
 
 
 
-                       tmp_provincias.clear()
-                       tmp_ciudades.clear()
-                       tmp_sector.clear()
+                        tmp_provincias.clear()
+                        tmp_ciudades.clear()
+                        tmp_sector.clear()
 
                         if (provincias.size > 0) {
 
@@ -628,5 +628,19 @@ class ProfileFragment : Fragment() {
             loadP = null
         }
 
+    }
+
+
+    override fun onStop() {
+
+        if (loadP != null)
+            loadP = null
+
+
+
+        if (loadData != null)
+            loadData = null
+
+        super.onStop()
     }
 }

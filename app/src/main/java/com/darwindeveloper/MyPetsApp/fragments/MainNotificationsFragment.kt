@@ -91,4 +91,12 @@ class MainNotificationsFragment : Fragment() {
 
     }
 
+
+    override fun onStop() {
+        if(load!=null){
+            load=null
+        }
+        super.onStop()
+    }
+
 }

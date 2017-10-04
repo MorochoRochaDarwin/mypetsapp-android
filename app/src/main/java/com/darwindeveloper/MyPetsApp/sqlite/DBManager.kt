@@ -66,7 +66,6 @@ class DBManager(private val context: Context) {
             cursor.moveToFirst()
 
             do {
-
                 val id = cursor.getInt(cursor.getColumnIndex("id"))
                 val titulo = cursor.getString(cursor.getColumnIndex("titulo"))
                 val tipo = cursor.getString(cursor.getColumnIndex("tipo"))

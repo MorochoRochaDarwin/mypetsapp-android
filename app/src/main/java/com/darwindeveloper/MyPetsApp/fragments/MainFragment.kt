@@ -60,9 +60,7 @@ class MainFragment : Fragment() {
         args2.putString(EstablecimientosFragment.API_TOKEN, api_token)
 
 
-        val transaction2 = activity.supportFragmentManager.beginTransaction()
-        transaction2.replace(R.id.fragment_container_establecimientos, EstablecimientosFragment.newInstance(args2))
-        transaction2.commit()
+
 
 
         val args3 = Bundle()

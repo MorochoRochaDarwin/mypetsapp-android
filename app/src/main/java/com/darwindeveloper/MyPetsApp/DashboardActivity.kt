@@ -176,6 +176,7 @@ class DashboardActivity : AppCompatActivity() {
                     val edit = preferences.edit()
                     edit.putString(Constants.USER_ID, null)
                     edit.putString(Constants.USER_API_TOKEN, null)
+                    edit.putBoolean(Constants.DATA_READY, false)
                     edit.apply()
 
 
