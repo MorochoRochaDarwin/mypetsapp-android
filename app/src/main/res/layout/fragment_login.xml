@@ -97,6 +97,22 @@
                             android:singleLine="true" />
 
                     </android.support.design.widget.TextInputLayout>
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/estid"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Código clínica o establecimiento"
+                            android:imeActionId="6"
+                            android:imeOptions="actionUnspecified"
+                            android:inputType="number"
+                            android:maxLines="1"
+                            android:singleLine="true" />
+
+                    </android.support.design.widget.TextInputLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -133,6 +149,6 @@
         android:paddingBottom="15dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:text="NOTA: Si es la primera vez que inicias sesión utiliza tu número de Cédula o pasaporte" />
+        android:text="NOTA: Si es la primera vez que inicias sesión utiliza tu email como contraseña." />
 
 </RelativeLayout>

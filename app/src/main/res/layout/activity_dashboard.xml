@@ -12,13 +12,12 @@
         android:layout_weight="1"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme" />
+        android:theme="@style/WhiteToolbar" />
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/dashboard_navigation"
         android:layout_below="@id/dashboard_toolbar"
         android:orientation="vertical">
 
@@ -77,18 +76,6 @@
         app:layout_anchorGravity="top|center" />
 
 
-    <android.support.design.widget.BottomNavigationView
-        android:id="@+id/dashboard_navigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="0dp"
-        android:layout_marginStart="0dp"
-        android:background="@color/colorPrimary"
-        app:elevation="10dp"
-        app:layout_anchorGravity="bottom"
-        app:itemIconTint="#fff"
-        app:itemTextColor="#fff"
-        app:menu="@menu/dashboard_navigation" />
+
 
 </RelativeLayout>

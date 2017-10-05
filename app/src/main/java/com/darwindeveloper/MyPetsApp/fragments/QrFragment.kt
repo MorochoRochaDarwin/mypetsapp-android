@@ -41,6 +41,7 @@ class QrFragment : Fragment(), MessageDialogFragment.MessageDialogListener,
 
 
     private var progressDialog: ProgressDialog? = null
+    private var est_id: String? = null
     override fun onResponse(call: Call<QRResponse>?, response: Response<QRResponse>?) {
         val res = response!!.body()
         if (res != null) {
@@ -56,6 +57,7 @@ class QrFragment : Fragment(), MessageDialogFragment.MessageDialogListener,
                 editor.putString(Constants.USER_NUMBRE_IDENTIFICATION, user.cedula)
                 editor.putString(Constants.USER_PHOTO, user.foto)
                 editor.putString(Constants.USER_API_TOKEN, user.api_token)
+                editor.putString(Constants.ESTABLECIMIENTO_ID, est_id)
                 editor.apply()
 
                 val intent = Intent(context, DataUserActivity::class.java)
@@ -100,7 +102,7 @@ class QrFragment : Fragment(), MessageDialogFragment.MessageDialogListener,
                     progressDialog!!.show()
                     // showMessageDialog("Contents = " + rawResult.getText() + ", Format = " + rawResult.getBarcodeFormat().toString())
                     val user_id = jo.getString("user_id")
-                    val est_id = jo.getString("est_id")
+                    est_id = jo.getString("est_id")
 
                     val ws = WebApiClient.client!!.create(WebService::class.java)
                     val mcall = ws.loginQR(user_id, est_id, firebase_token)

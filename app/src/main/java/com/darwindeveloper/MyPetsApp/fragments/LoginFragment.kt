@@ -18,6 +18,7 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import com.darwindeveloper.MyPetsApp.DashboardActivity
+import com.darwindeveloper.MyPetsApp.DataUserActivity
 import com.darwindeveloper.MyPetsApp.R
 import com.darwindeveloper.MyPetsApp.api.Constants
 import com.darwindeveloper.MyPetsApp.api.WebApiClient
@@ -74,6 +75,7 @@ class LoginFragment : Fragment() {
         // obtenemos el email y la contraseña
         val email = rootView!!.email.getText().toString()
         val password = rootView!!.password.getText().toString()
+        val est_id = rootView!!.estid.getText().toString()
 
         var cancel = false
         var focusView: View? = null
@@ -98,6 +100,10 @@ class LoginFragment : Fragment() {
             rootView!!.password.setError("ingrese una contraseña valida")
             focusView = rootView!!.password
             cancel = true
+        } else if (TextUtils.isEmpty(est_id)) {
+            rootView!!.estid.setError("ingrese un código de establecimiento valido")
+            focusView = rootView!!.estid
+            cancel = true
         }
 
         if (cancel) {
@@ -108,7 +114,7 @@ class LoginFragment : Fragment() {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             Toast.makeText(context, "Verificando información", Toast.LENGTH_SHORT).show()
-            mAuthTask = UserLoginTask(email, password)
+            mAuthTask = UserLoginTask(email, password, est_id)
             mAuthTask?.execute(null as Void?)
         }
     }
@@ -127,7 +133,7 @@ class LoginFragment : Fragment() {
      * Represents an asynchronous login/registration task used to authenticate
      * the user.
      */
-    inner class UserLoginTask internal constructor(private val mEmail: String, private val mPassword: String) : AsyncTask<Void, Void, Void>(), Callback<UserResponse> {
+    inner class UserLoginTask internal constructor(private val mEmail: String, private val mPassword: String, private val mID: String) : AsyncTask<Void, Void, Void>(), Callback<UserResponse> {
         internal var preferences: SharedPreferences
 
         init {
@@ -141,7 +147,7 @@ class LoginFragment : Fragment() {
 
 
             val webService = WebApiClient.client!!.create(WebService::class.java)
-            val call = webService.api_login(mEmail, mPassword, firebase_token)
+            val call = webService.api_login(mEmail, mPassword, mID, firebase_token)
             call.enqueue(this)
 
             /*
@@ -171,10 +177,12 @@ class LoginFragment : Fragment() {
                     editor.putString(Constants.USER_NUMBRE_IDENTIFICATION, user.cedula)
                     editor.putString(Constants.USER_PHOTO, user.foto)
                     editor.putString(Constants.USER_API_TOKEN, user.api_token)
+                    editor.putString(Constants.ESTABLECIMIENTO_ID, mID)
                     editor.apply()
 
-                    val intent = Intent(context, DashboardActivity::class.java)
-                    intent.putExtra(DashboardActivity.USER_ID, user.user_id)
+                    val intent = Intent(context, DataUserActivity::class.java)
+                    intent.putExtra(DataUserActivity.USER_ID, user.user_id)
+                    intent.putExtra(DataUserActivity.API_TOKEN, user.api_token)
                     startActivity(intent)
                     activity.finish()
 

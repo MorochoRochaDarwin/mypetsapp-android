@@ -24,7 +24,10 @@ import android.net.Uri
 import android.os.Build
 import android.provider.MediaStore
 import android.provider.Settings
+import android.support.design.widget.NavigationView
 import android.support.v4.content.ContextCompat
+import android.support.v4.view.GravityCompat
+import android.support.v7.app.ActionBarDrawerToggle
 import android.util.Log
 import com.darwindeveloper.MyPetsApp.api.WebApiClient
 import com.darwindeveloper.MyPetsApp.api.WebService
@@ -37,6 +40,7 @@ import com.google.android.gms.tasks.OnFailureListener
 import com.google.firebase.storage.FirebaseStorage
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
+import kotlinx.android.synthetic.main.activity_main2.*
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -47,20 +51,9 @@ import java.io.ByteArrayOutputStream
 import java.io.File
 
 
-class DashboardActivity : AppCompatActivity() {
+class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
 
-
-    var user_id: String? = null
-    var api_token: String? = null
-
-    private val REQUEST_CODE_HOVER_PERMISSION = 1000
-    private val REQUEST_WRITE_PERMISSION = 1001
-    private val REQUEST_CAMERA_PERMISSION = 1002
-    private val REQUEST_FINE_LOCATION_PERMISSION = 1003
-    private val REQUEST_COARSE_LOCATION_PERMISSION = 1004
-    private var mPermissionsRequested = false
-
-    private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         val transaction = supportFragmentManager.beginTransaction()
 
         val ars = Bundle()
@@ -71,36 +64,55 @@ class DashboardActivity : AppCompatActivity() {
             R.id.navigation_home -> {
                 ars.putString(MainFragment.USER_ID, user_id)
                 ars.putString(MainFragment.USER_API_TOKEN, api_token)
+                ars.putString(MainFragment.EST_ID, est_id)
                 transaction.replace(R.id.dashboard_fragment_container, MainFragment.newInstance(ars))
                 transaction.commit()
-                return@OnNavigationItemSelectedListener true
             }
 
 
             R.id.navigation_inbox -> {
                 transaction.replace(R.id.dashboard_fragment_container, MainNotificationsFragment())
                 transaction.commit()
-                return@OnNavigationItemSelectedListener true
+
             }
             R.id.navigation_petfriendly -> {
                 transaction.replace(R.id.dashboard_fragment_container, PetFriendlyFragment())
                 transaction.commit()
-                return@OnNavigationItemSelectedListener true
+
             }
 
             R.id.navigation_profile -> {
                 ars.putString(ProfileFragment.USER_ID, user_id)
                 transaction.replace(R.id.dashboard_fragment_container, ProfileFragment.newInstance(ars))
                 transaction.commit()
-                return@OnNavigationItemSelectedListener true
             }
 
         }
 
 
-
-        false
+        drawer_layout.closeDrawer(GravityCompat.START)
+        return true
     }
+
+    override fun onBackPressed() {
+        if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
+            drawer_layout.closeDrawer(GravityCompat.START)
+        } else {
+            super.onBackPressed()
+        }
+    }
+
+
+    var user_id: String? = null
+    var api_token: String? = null
+    var est_id: String? = null
+
+    private val REQUEST_CODE_HOVER_PERMISSION = 1000
+    private val REQUEST_WRITE_PERMISSION = 1001
+    private val REQUEST_CAMERA_PERMISSION = 1002
+    private val REQUEST_FINE_LOCATION_PERMISSION = 1003
+    private val REQUEST_COARSE_LOCATION_PERMISSION = 1004
+    private var mPermissionsRequested = false
 
 
     companion object {
@@ -109,10 +121,17 @@ class DashboardActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_dashboard)
+        setContentView(R.layout.activity_main2)
         setSupportActionBar(dashboard_toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
-        supportActionBar?.setIcon(R.mipmap.ic_launcher2)
+
+
+        val toggle = ActionBarDrawerToggle(
+                this, drawer_layout, dashboard_toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+        drawer_layout.addDrawerListener(toggle)
+        toggle.syncState()
+
+        nav_view.setNavigationItemSelectedListener(this)
 
 
         val preferences = PreferenceManager.getDefaultSharedPreferences(this)
@@ -121,6 +140,7 @@ class DashboardActivity : AppCompatActivity() {
         val foto = preferences.getString(Constants.USER_PHOTO, null)
         user_id = intent.getStringExtra(USER_ID)
         api_token = preferences.getString(Constants.USER_API_TOKEN, null)
+        est_id = preferences.getString(Constants.ESTABLECIMIENTO_ID, null)
         dashboard_username.text = "$last_name $name"
         dashboard_user_id.text = "USUARIO\nID: $user_id"
 
@@ -131,14 +151,13 @@ class DashboardActivity : AppCompatActivity() {
                     .into(dashboard_profile_image);
         }
 
-        dashboard_navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
-
 
         val transaction = supportFragmentManager.beginTransaction()
         //pasamos los parametros
         val args = Bundle()
         args.putString(MainFragment.USER_ID, user_id)
         args.putString(MainFragment.USER_API_TOKEN, api_token)
+        args.putString(MainFragment.EST_ID, est_id)
         transaction.replace(R.id.dashboard_fragment_container, MainFragment.newInstance(args))
         transaction.commit()
 

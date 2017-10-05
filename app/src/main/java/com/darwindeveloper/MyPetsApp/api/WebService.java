@@ -36,6 +36,7 @@ public interface WebService {
     @FormUrlEncoded
     Call<UserResponse> api_login(@Field("email") String email,
                                  @Field("password") String password,
+                                 @Field("est_id") String est_id,
                                  @Field("firebase_token") String firebase_token);
 
 
@@ -126,7 +127,7 @@ public interface WebService {
 
     @POST("eventos_mascota")
     @FormUrlEncoded
-    Call<List<Cita>> citas_mascota(@Field("mascota_id") String mascota_id);
+    Call<List<Cita>> citas_mascota(@Field("mascota_id") String mascota_id, @Field("est_id") String est_id);
 
 
     @POST("agendar_cita")

@@ -68,6 +68,7 @@ class MascotaActivity : AppCompatActivity(), EstablecimientosAdapter.OnClickEstL
 
     private var mascota_id: String? = null
     private var user_id: String? = null
+    private var est_id: String? = null
     private var api_token: String? = null
 
 
@@ -98,6 +99,7 @@ class MascotaActivity : AppCompatActivity(), EstablecimientosAdapter.OnClickEstL
         const val MASCOTA_ID = "Amascota.mascota_id"
         const val USER_ID = "Amascota.user_id"
         const val API_TOKEN = "Amascota.api_token"
+        const val EST_ID = "Amascota.estid"
     }
 
 
@@ -108,6 +110,7 @@ class MascotaActivity : AppCompatActivity(), EstablecimientosAdapter.OnClickEstL
         mascota_id = intent.getStringExtra(MASCOTA_ID)
         user_id = intent.getStringExtra(USER_ID)
         api_token = intent.getStringExtra(API_TOKEN)
+        est_id = intent.getStringExtra(EST_ID)
 
 
 
@@ -662,7 +665,7 @@ class MascotaActivity : AppCompatActivity(), EstablecimientosAdapter.OnClickEstL
         override fun doInBackground(vararg p0: Void?): Void? {
 
             val ws = WebApiClient.client!!.create(WebService::class.java)
-            val call = ws.citas_mascota(mascota_id)
+            val call = ws.citas_mascota(mascota_id,est_id)
             call.enqueue(this)
 
 
