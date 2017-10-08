@@ -17,6 +17,7 @@ import com.darwindeveloper.MyPetsApp.api.Constants
 import com.darwindeveloper.MyPetsApp.api.WebApiClient
 import com.darwindeveloper.MyPetsApp.api.WebService
 import com.darwindeveloper.MyPetsApp.api.modelos.Cita
+import com.darwindeveloper.MyPetsApp.api.modelos.Especies
 import com.darwindeveloper.MyPetsApp.api.modelos.Establecimiento
 import com.darwindeveloper.MyPetsApp.api.modelos.Mascota
 import com.darwindeveloper.MyPetsApp.api.responses.DefaultResponse
@@ -113,14 +114,13 @@ class MascotaActivity : AppCompatActivity(), EstablecimientosAdapter.OnClickEstL
         est_id = intent.getStringExtra(EST_ID)
 
 
-
-       /* adapterEstablecimientos = EstablecimientosAdapter(this@MascotaActivity, establecimientos)
-        adapterEstablecimientos?.onClickEstListener = this*/
+        /* adapterEstablecimientos = EstablecimientosAdapter(this@MascotaActivity, establecimientos)
+         adapterEstablecimientos?.onClickEstListener = this*/
         adapterEvents = EventosMascotaAdapter(this@MascotaActivity, eventos)
-        adapterEvents?.onEventsPetClickListener=this
-       // bsm_establecimientos.layoutManager = LinearLayoutManager(this@MascotaActivity, LinearLayoutManager.HORIZONTAL, false)
+        adapterEvents?.onEventsPetClickListener = this
+        // bsm_establecimientos.layoutManager = LinearLayoutManager(this@MascotaActivity, LinearLayoutManager.HORIZONTAL, false)
         bsm_list_eventos.layoutManager = LinearLayoutManager(this@MascotaActivity)
-       // bsm_establecimientos.adapter = adapterEstablecimientos
+        // bsm_establecimientos.adapter = adapterEstablecimientos
         bsm_list_eventos.adapter = adapterEvents
 
 
@@ -145,6 +145,15 @@ class MascotaActivity : AppCompatActivity(), EstablecimientosAdapter.OnClickEstL
         val adapterSpinnerEsterilizado = ArrayAdapter<String>(this@MascotaActivity, android.R.layout.simple_spinner_dropdown_item, esterilizados)
         adapterSpinnerEsterilizado.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         bsm_spinner_esterilizado.adapter = adapterSpinnerEsterilizado
+
+        val adapterEspecies = ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, especies)
+        adapterEspecies.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        bsm_esit_especie.adapter = adapterEspecies
+
+
+        val adapterRazas = ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, razas)
+        adapterEspecies.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        bsm_edit_sraza.adapter = adapterRazas
 
 
         bsm_spinner_tamanio.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
@@ -226,9 +235,70 @@ class MascotaActivity : AppCompatActivity(), EstablecimientosAdapter.OnClickEstL
 
         bsm_foto.setOnClickListener {
             CropImage.activity().setAspectRatio(200, 200)
+                    .setRequestedSize(200, 200, CropImageView.RequestSizeOptions.RESIZE_INSIDE)
                     .setGuidelines(CropImageView.Guidelines.ON)
                     .start(this);
         }
+        bsm_edit_sraza.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+            }
+
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
+                raza = razas[position]
+            }
+
+        })
+
+        bsm_esit_especie.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+            }
+
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
+                especie = especies[position]
+
+                if (position == 0) {
+                    bsm_edit_raza.visibility = View.GONE
+                    bsm_edit_sraza.visibility = View.VISIBLE
+                    razas.clear()
+                    razas.addAll(perros)
+                    adapterRazas.notifyDataSetChanged()
+                } else if (position == 1) {
+                    bsm_edit_raza.visibility = View.GONE
+                    bsm_edit_sraza.visibility = View.VISIBLE
+                    razas.clear()
+                    razas.addAll(gatos)
+                    adapterRazas.notifyDataSetChanged()
+                } else {
+                    bsm_edit_raza.visibility = View.VISIBLE
+                    bsm_edit_sraza.visibility = View.GONE
+                }
+
+
+            }
+
+        })
+
+
+        val ws = WebApiClient.client!!.create(WebService::class.java)
+        val mcall = ws.especies()
+        mcall.enqueue(object : Callback<Especies> {
+            override fun onFailure(call: Call<Especies>?, t: Throwable?) {
+
+            }
+
+            override fun onResponse(call: Call<Especies>?, response: Response<Especies>?) {
+                val res = response?.body()
+                if (res != null) {
+                    perros.addAll(res.canino!!)
+                    gatos.addAll(res.felino!!)
+
+                    razas.addAll(perros)
+                    adapterRazas.notifyDataSetChanged()
+
+                }
+            }
+
+        })
 
 
         if (dataPetTask != null)
@@ -251,10 +321,10 @@ class MascotaActivity : AppCompatActivity(), EstablecimientosAdapter.OnClickEstL
 
 
         am_btn_carnet.setOnClickListener {
-            val i=Intent(this,CarnetActivity::class.java)
-            i.putExtra(CarnetActivity.USER_ID,user_id)
-            i.putExtra(CarnetActivity.MASCOTA_ID,mascota_id)
-            i.putExtra(CarnetActivity.API_TOKEN,api_token)
+            val i = Intent(this, CarnetActivity::class.java)
+            i.putExtra(CarnetActivity.USER_ID, user_id)
+            i.putExtra(CarnetActivity.MASCOTA_ID, mascota_id)
+            i.putExtra(CarnetActivity.API_TOKEN, api_token)
             startActivity(i)
         }
 
@@ -267,11 +337,11 @@ class MascotaActivity : AppCompatActivity(), EstablecimientosAdapter.OnClickEstL
 
         bsm_input_nombre.visibility = View.VISIBLE
         bsm_nombre.visibility = View.GONE
-        bsm_input_especie.visibility = View.VISIBLE
+        bsm_er.visibility = View.VISIBLE
         bsm_especie.visibility = View.GONE
         bsm_input_tamanio.visibility = View.VISIBLE
         bsm_tamanio.visibility = View.GONE
-        bsm_input_raza.visibility = View.VISIBLE
+
         bsm_raza.visibility = View.GONE
         bsm_input_nacimiento.visibility = View.VISIBLE
         bsm_nacimiento.visibility = View.GONE
@@ -304,11 +374,11 @@ class MascotaActivity : AppCompatActivity(), EstablecimientosAdapter.OnClickEstL
 
         bsm_input_nombre.visibility = View.GONE
         bsm_nombre.visibility = View.VISIBLE
-        bsm_input_especie.visibility = View.GONE
+        bsm_er.visibility = View.GONE
         bsm_especie.visibility = View.VISIBLE
         bsm_input_tamanio.visibility = View.GONE
         bsm_tamanio.visibility = View.VISIBLE
-        bsm_input_raza.visibility = View.GONE
+
         bsm_raza.visibility = View.VISIBLE
         bsm_input_nacimiento.visibility = View.GONE
         bsm_nacimiento.visibility = View.VISIBLE
@@ -334,13 +404,26 @@ class MascotaActivity : AppCompatActivity(), EstablecimientosAdapter.OnClickEstL
         bsm_obs.visibility = View.VISIBLE
     }
 
-
+    private val perros = ArrayList<String>()
+    private val gatos = ArrayList<String>()
+    private val especies = arrayOf("canino", "felino", "conejo", "canario", "hamster", "otros")
+    private val razas = ArrayList<String>()
+    private var especie = "canino"
+    private var raza = "Mestizo"
     private fun edit() {
 
 
         val nombre = bsm_edit_nombre.text.toString()
-        val especie = bsm_edit_especie.text.toString()
-        val raza = bsm_edit_raza.text.toString()
+
+        if (especie != "canino" && especie != "felino") {
+            raza = bsm_edit_raza.text.toString()
+            if (raza.isEmpty()) {
+                bsm_edit_raza.setError("Campo obligatorio")
+                bsm_edit_raza.requestFocus()
+                return
+            }
+        }
+
         val color = bsm_edit_color.text.toString()
         val alimentacion = bsm_edit_alimentacion.text.toString()
         val obs = bsm_edit_obs.text.toString()
@@ -421,9 +504,8 @@ class MascotaActivity : AppCompatActivity(), EstablecimientosAdapter.OnClickEstL
 
                 bsm_btns.visibility = View.GONE
                 bsm_input_nombre.visibility = View.GONE
-                bsm_input_especie.visibility = View.GONE
+                bsm_er.visibility = View.GONE
                 bsm_input_tamanio.visibility = View.GONE
-                bsm_input_raza.visibility = View.GONE
                 bsm_input_nacimiento.visibility = View.GONE
                 bsm_input_muerte.visibility = View.GONE
                 bsm_input_sexo.visibility = View.GONE
@@ -466,7 +548,6 @@ class MascotaActivity : AppCompatActivity(), EstablecimientosAdapter.OnClickEstL
                 bsm_nombre.text = "Nombre: " + pet.nombre
                 bsm_edit_nombre.setText(pet.nombre)
                 bsm_especie.text = "Especie: " + pet.especie
-                bsm_edit_especie.setText(pet.especie)
                 bsm_raza.text = "Raza: " + pet.raza
                 bsm_edit_raza.setText(pet.raza)
                 bsm_color.text = "Color: " + pet.color
@@ -573,6 +654,7 @@ class MascotaActivity : AppCompatActivity(), EstablecimientosAdapter.OnClickEstL
                             if (res.status == 200) {
                                 Picasso.with(this@MascotaActivity)
                                         .load(Constants.WEB_URL + res.url)
+                                        .resize(200, 200)
                                         .into(bsm_foto)
                             }
                         }
@@ -665,7 +747,7 @@ class MascotaActivity : AppCompatActivity(), EstablecimientosAdapter.OnClickEstL
         override fun doInBackground(vararg p0: Void?): Void? {
 
             val ws = WebApiClient.client!!.create(WebService::class.java)
-            val call = ws.citas_mascota(mascota_id,est_id)
+            val call = ws.citas_mascota(mascota_id, est_id)
             call.enqueue(this)
 
 

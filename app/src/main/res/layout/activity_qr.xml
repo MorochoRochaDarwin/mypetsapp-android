@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:gravity="center"
-        android:text="Enfoque el codigo QR para inicar sesión en MyPetsApp"
+        android:text="Enfoque el código QR para inicar sesión en MyPetsApp"
         android:textColor="#fff"
         android:id="@+id/textView3" />
 

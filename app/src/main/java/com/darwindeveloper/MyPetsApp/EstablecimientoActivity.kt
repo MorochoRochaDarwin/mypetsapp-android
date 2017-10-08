@@ -148,13 +148,7 @@ class EstablecimientoActivity : AppCompatActivity(), MascotasAdapter.MascotasOnC
                 mIntent.putExtra(AgendarCitaActivity.EST_NAME, est_nombre)
                 mIntent.putExtra(AgendarCitaActivity.EST_ID, est_id)
 
-                if (op == mascotas.size) {
-                    mIntent.putExtra(AgendarCitaActivity.PET_ID, "-1")
-                } else {
-                    mIntent.putExtra(AgendarCitaActivity.PET_ID, mascotas[op].mascota_id)
-                }
 
-                startActivity(mIntent)
 
             }).create().show()
 

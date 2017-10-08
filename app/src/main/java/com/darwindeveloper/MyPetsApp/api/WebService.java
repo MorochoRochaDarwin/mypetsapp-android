@@ -1,6 +1,7 @@
 package com.darwindeveloper.MyPetsApp.api;
 
 import com.darwindeveloper.MyPetsApp.api.modelos.Cita;
+import com.darwindeveloper.MyPetsApp.api.modelos.Especies;
 import com.darwindeveloper.MyPetsApp.api.modelos.Establecimiento;
 import com.darwindeveloper.MyPetsApp.api.modelos.Mascota;
 import com.darwindeveloper.MyPetsApp.api.modelos.Provincia;
@@ -60,7 +61,7 @@ public interface WebService {
 
     @POST("check-token")
     @FormUrlEncoded
-    Call<CheckTokenResponse> check_token(@Field("user_id") String user_id,
+    Call<CheckTokenResponse> check_token(@Field("user_id") String user_id, @Field("est_id") String est_id,
                                          @Field("api_token") String api_token);
 
 
@@ -104,6 +105,9 @@ public interface WebService {
     @GET("provincias")
     Call<List<Provincia>> provincias();
 
+    @GET("especies")
+    Call<Especies> especies();
+
 
     @GET("sitios/{categoria}")
     Call<List<Provincia>> sitios(@Path("categoria") String categoria);
@@ -113,6 +117,25 @@ public interface WebService {
     @POST("foto_cliente")
     Call<UploadResponse> subir_foto(@Part("user_id") RequestBody user_id,
                                     @Part("api_token") RequestBody uapi_token, @Part MultipartBody.Part image);
+
+
+
+    @POST("insertar_mascota")
+    @FormUrlEncoded
+    Call<DefaultResponse> nueva_mascota(
+            @Field("user_id") String user_id,
+            @Field("est_id") String est_id,
+            @Field("nombre") String nombre,
+            @Field("raza") String raza,
+            @Field("genero") String sexo,
+            @Field("nacimiento") String nacimiento,
+            @Field("color") String color,
+            @Field("especie") String especie,
+            @Field("microchip") String microchip,
+            @Field("esterilizado") String esterilizado,
+            @Field("tamanio") String tamanio,
+            @Field("alimentacion") String alimentacion,
+            @Field("observaciones") String obs);
 
 
     @POST("eventos")

@@ -1,5 +1,6 @@
 package com.darwindeveloper.MyPetsApp.api.responses
 
+import com.darwindeveloper.MyPetsApp.api.modelos.Establecimiento
 import com.darwindeveloper.MyPetsApp.api.modelos.User
 
 /**
@@ -9,5 +10,6 @@ import com.darwindeveloper.MyPetsApp.api.modelos.User
 class UserResponse {
     val status: Int = 0
     val user: User? = null
+    val establecimiento: Establecimiento? = null
     val msg: String? = null
 }

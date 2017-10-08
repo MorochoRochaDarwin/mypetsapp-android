@@ -64,7 +64,7 @@ class EventActivity : AppCompatActivity() {
 
         if (mascota_foto != null) {
             Picasso.with(this)
-                    .load(Constants.WEB_URL + mascota_foto)
+                    .load(Constants.WEB_URL + mascota_foto).resize(200,200)
                     .into(aev_foto)
         }
 

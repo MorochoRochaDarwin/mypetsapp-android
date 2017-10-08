@@ -30,6 +30,7 @@ class EventosAdapter(val context: Context, val eventos: ArrayList<Cita>) : Recyc
             Picasso.with(context)
                     .load(Constants.WEB_URL + cita.mascota_foto)
                     .placeholder(R.mipmap.ic_launcher)
+                    .resize(200,200)
                     .into(holder.itemView.ie_foto);
         }
 

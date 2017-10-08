@@ -31,7 +31,7 @@ import retrofit2.Response
  */
 class MainFragment : Fragment(), EventosAdapter.OnEventsClickListener, MascotasAdapter.MascotasOnClickListener {
     override fun mascotaOnClick(mascota: Mascota) {
-        val i = Intent(context, EventActivity::class.java)
+        val i = Intent(context, MascotaActivity::class.java)
         i.putExtra(MascotaActivity.USER_ID, user_id)
         i.putExtra(MascotaActivity.API_TOKEN, api_token)
         i.putExtra(MascotaActivity.MASCOTA_ID, mascota.mascota_id)

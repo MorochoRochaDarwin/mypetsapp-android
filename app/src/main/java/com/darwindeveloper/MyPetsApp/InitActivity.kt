@@ -28,12 +28,13 @@ class InitActivity : Activity() {
         preferences = PreferenceManager.getDefaultSharedPreferences(this@InitActivity)
 
         val user_id: String? = preferences?.getString(Constants.USER_ID, null)
+        val est_id: String? = preferences?.getString(Constants.ESTABLECIMIENTO_ID, null)
 
-        if (user_id != null) {
+        if (user_id != null && est_id != null) {
 
             val api_token: String = preferences?.getString(Constants.USER_API_TOKEN, null) as String
 
-            initTask = InitTask(user_id, api_token)
+            initTask = InitTask(user_id, est_id, api_token)
             initTask?.execute()
 
 
@@ -50,17 +51,18 @@ class InitActivity : Activity() {
     }
 
 
-    private inner class InitTask(userId: String, apiToken: String) : AsyncTask<Void, Void, Void>(), Callback<CheckTokenResponse> {
+    private inner class InitTask(userId: String, estId: String, apiToken: String) : AsyncTask<Void, Void, Void>(), Callback<CheckTokenResponse> {
 
 
         final val mUserId = userId
         final val mApiToken = apiToken
+        final val estid = estId
 
 
         override fun doInBackground(vararg p0: Void?): Void? {
 
             val webService = WebApiClient.client!!.create(WebService::class.java)
-            val call = webService.check_token(mUserId, mApiToken)
+            val call = webService.check_token(mUserId, estid, mApiToken)
             call.enqueue(this)
 
 
@@ -94,6 +96,8 @@ class InitActivity : Activity() {
                     } else {
                         val intent = Intent(this@InitActivity, DashboardActivity::class.java)
                         intent.putExtra(DashboardActivity.USER_ID, mUserId)
+                        intent.putExtra(DashboardActivity.EST_NAME, checkTokenResponse.est!!.nombre_establecimiento)
+                        intent.putExtra(DashboardActivity.EST_LOGO, checkTokenResponse.est.icono)
                         startActivity(intent)
                         finish()
                     }

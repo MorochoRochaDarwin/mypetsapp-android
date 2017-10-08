@@ -14,7 +14,7 @@
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="13dp"
+            android:layout_marginTop="5dp"
             app:cardElevation="10dp">
 
             <LinearLayout
@@ -38,60 +38,55 @@
         </android.support.v7.widget.CardView>
 
 
-        <android.support.v7.widget.CardView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="13dp"
-            app:cardElevation="10dp">
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
 
-            <LinearLayout
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="6dp"
+                android:text="Citas o eventos de tus mascotas: "
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/ae_cardView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:padding="20dp"
+                app:cardUseCompatPadding="true">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="6dp"
-                    android:text="Citas o eventos de tus mascotas: "
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-
-                <android.support.v7.widget.CardView
-                    android:id="@+id/ae_cardView"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    app:cardUseCompatPadding="true">
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_closeb" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:orientation="vertical">
+                        android:text="No hay citas o eventos pendientes" />
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
 
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/ic_closeb" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="No hay citas o eventos pendientes" />
-                    </LinearLayout>
-                </android.support.v7.widget.CardView>
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/ae_eventos"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:visibility="gone" />
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/ae_eventos"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone" />
 
 
-            </LinearLayout>
-        </android.support.v7.widget.CardView>
+        </LinearLayout>
 
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>

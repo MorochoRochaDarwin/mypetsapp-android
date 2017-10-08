@@ -7,10 +7,14 @@ import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.MenuItem
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.TimePicker
 import android.widget.Toast
 import com.darwindeveloper.MyPetsApp.api.WebApiClient
 import com.darwindeveloper.MyPetsApp.api.WebService
+import com.darwindeveloper.MyPetsApp.api.modelos.Mascota
 import com.darwindeveloper.MyPetsApp.api.responses.DefaultResponse
 
 import kotlinx.android.synthetic.main.activity_agendar_cita.*
@@ -26,7 +30,6 @@ class AgendarCitaActivity : AppCompatActivity() {
         const val USER_ID = "agendarcita.user_id"
         const val API_TOKEN = "agendarcita.user_api_token"
         const val EST_ID = "agendarcita.est_id"
-        const val PET_ID = "agendarcita.pet_id"
         const val EST_NAME = "agendarcita.est_name"
     }
 
@@ -37,6 +40,9 @@ class AgendarCitaActivity : AppCompatActivity() {
     private var pet_id: String? = null
     private var hour: Int? = null
     private var minute: Int? = null
+
+    private val mascotas: ArrayList<Mascota> = ArrayList()
+    private val mascotass: ArrayList<String> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,12 +57,10 @@ class AgendarCitaActivity : AppCompatActivity() {
         api_token = intent.getStringExtra(API_TOKEN)
         est_id = intent.getStringExtra(EST_ID)
         est_name = intent.getStringExtra(EST_NAME)
-        pet_id = intent.getStringExtra(PET_ID)
 
 
-        val currentDay = Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
-        val currentMonth = Calendar.getInstance().get(Calendar.MONTH)
-        val currentYear = Calendar.getInstance().get(Calendar.YEAR)
+
+
 
         supportActionBar?.setTitle("Nueva cita - $est_name")
 
@@ -70,6 +74,60 @@ class AgendarCitaActivity : AppCompatActivity() {
 
         });
 
+
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, mascotass)
+        aac_spinner.adapter = adapter
+
+        val webService = WebApiClient.client!!.create(WebService::class.java)
+
+        val mcall = webService.mascotas_establecimiento(user_id, est_id)
+        mcall.enqueue(object : Callback<List<Mascota>> {
+            override fun onResponse(call: Call<List<Mascota>>?, response: Response<List<Mascota>>?) {
+                if (response?.body() != null) {
+                    val mascotas_response = response.body()
+                    mascotas.addAll(mascotas_response)
+
+
+                    for (i in mascotas.indices) {
+                        mascotass.add(mascotas[i].nombre!!)
+                    }
+                    mascotass.add("ninguno")
+
+                    adapter.notifyDataSetChanged()
+
+
+                    if (mascotas.size > 0) {
+                        pet_id = mascotas[0].mascota_id
+                    } else {
+                        pet_id = "-1"
+                    }
+
+                }
+
+
+            }
+
+            override fun onFailure(call: Call<List<Mascota>>?, t: Throwable?) {
+
+            }
+
+        });
+
+        aac_spinner.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+
+            }
+
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                if (p2 == mascotass.size - 1) {
+                    pet_id = "-1";
+
+                } else {
+                    pet_id = mascotas[p2].mascota_id
+                }
+            }
+
+        })
 
 
 

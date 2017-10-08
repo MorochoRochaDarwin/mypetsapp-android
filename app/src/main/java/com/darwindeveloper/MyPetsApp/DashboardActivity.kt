@@ -27,8 +27,12 @@ import android.provider.Settings
 import android.support.design.widget.NavigationView
 import android.support.v4.content.ContextCompat
 import android.support.v4.view.GravityCompat
+import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.util.Log
+import android.view.View
+import android.widget.ImageView
+import android.widget.TextView
 import com.darwindeveloper.MyPetsApp.api.WebApiClient
 import com.darwindeveloper.MyPetsApp.api.WebService
 import com.darwindeveloper.MyPetsApp.api.responses.UploadResponse
@@ -68,7 +72,22 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
                 transaction.replace(R.id.dashboard_fragment_container, MainFragment.newInstance(ars))
                 transaction.commit()
             }
+            R.id.navigation_newpet -> {
+                ars.putString(NuevaMascotaFragment.USER_ID, user_id)
+                ars.putString(NuevaMascotaFragment.API_TOKEN, api_token)
+                ars.putString(NuevaMascotaFragment.EST_ID, est_id)
+                transaction.replace(R.id.dashboard_fragment_container, NuevaMascotaFragment.newInstance(ars))
+                transaction.commit()
+            }
 
+            R.id.navigation_aac -> {
+                val i = Intent(this, AgendarCitaActivity::class.java)
+                i.putExtra(AgendarCitaActivity.USER_ID,user_id)
+                i.putExtra(AgendarCitaActivity.API_TOKEN,api_token)
+                i.putExtra(AgendarCitaActivity.EST_ID,est_id)
+                i.putExtra(AgendarCitaActivity.EST_NAME,est_name)
+                startActivity(i)
+            }
 
             R.id.navigation_inbox -> {
                 transaction.replace(R.id.dashboard_fragment_container, MainNotificationsFragment())
@@ -106,6 +125,8 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
     var user_id: String? = null
     var api_token: String? = null
     var est_id: String? = null
+    var est_name: String? = null
+    var est_logo: String? = null
 
     private val REQUEST_CODE_HOVER_PERMISSION = 1000
     private val REQUEST_WRITE_PERMISSION = 1001
@@ -117,6 +138,9 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
 
     companion object {
         const val USER_ID = "DashboarAcivity.user_id"
+        const val EST_NAME = "DashboarAcivity.est_name"
+        const val EST_ID = "DashboarAcivity.est_id"
+        const val EST_LOGO = "DashboarAcivity.est_logo"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -132,6 +156,26 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         toggle.syncState()
 
         nav_view.setNavigationItemSelectedListener(this)
+        drawer_layout.addDrawerListener(object : DrawerLayout.DrawerListener {
+            override fun onDrawerStateChanged(newState: Int) {
+
+            }
+
+            override fun onDrawerSlide(drawerView: View?, slideOffset: Float) {
+                if (drawerView != null) {
+                    main_content.setTranslationX(slideOffset * drawerView.width)
+                }
+            }
+
+            override fun onDrawerClosed(drawerView: View?) {
+
+            }
+
+            override fun onDrawerOpened(drawerView: View?) {
+
+            }
+
+        });
 
 
         val preferences = PreferenceManager.getDefaultSharedPreferences(this)
@@ -139,6 +183,8 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         val last_name = preferences.getString(Constants.USER_LAST_NAME, "null")
         val foto = preferences.getString(Constants.USER_PHOTO, null)
         user_id = intent.getStringExtra(USER_ID)
+        est_name = intent.getStringExtra(EST_NAME)
+        est_logo = intent.getStringExtra(EST_LOGO)
         api_token = preferences.getString(Constants.USER_API_TOKEN, null)
         est_id = preferences.getString(Constants.ESTABLECIMIENTO_ID, null)
         dashboard_username.text = "$last_name $name"
@@ -147,10 +193,23 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         if (foto != null) {
             Picasso.with(this)
                     .load(Constants.WEB_URL + foto)
-                    .placeholder(R.drawable.man)
+                    .placeholder(R.drawable.man).resize(200, 200)
                     .into(dashboard_profile_image);
         }
 
+
+        val navHeaderView = nav_view.inflateHeaderView(R.layout.nav_header_main2)
+        val textHeader = navHeaderView.findViewById<TextView>(R.id.name_est)
+        val textIdHeader = navHeaderView.findViewById<TextView>(R.id.id_est)
+        val logoHeader = navHeaderView.findViewById<ImageView>(R.id.logo_est)
+        textHeader.text = est_name
+        textIdHeader.text = "ESTABLECIMIENTO: $est_id"
+
+
+        if (est_logo != null) {
+            Picasso.with(this).load(Constants.WEB_URL + est_logo)
+                    .into(logoHeader)
+        }
 
         val transaction = supportFragmentManager.beginTransaction()
         //pasamos los parametros
@@ -162,8 +221,11 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
         transaction.commit()
 
 
+
+
         dashboard_profile_image.setOnClickListener {
             CropImage.activity().setAspectRatio(200, 200)
+                    .setRequestedSize(200, 200, CropImageView.RequestSizeOptions.RESIZE_INSIDE)
                     .setGuidelines(CropImageView.Guidelines.ON)
                     .start(this);
         }

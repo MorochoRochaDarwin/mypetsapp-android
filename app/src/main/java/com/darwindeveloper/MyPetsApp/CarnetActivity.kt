@@ -61,7 +61,7 @@ class CarnetActivity : AppCompatActivity() {
 
                     if (pet.foto != null) {
                         Picasso.with(this@CarnetActivity)
-                                .load(Constants.WEB_URL + pet.foto)
+                                .load(Constants.WEB_URL + pet.foto).resize(200, 200)
                                 .into(ac_foto)
                     }
 

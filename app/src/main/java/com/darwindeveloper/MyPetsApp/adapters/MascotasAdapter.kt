@@ -27,8 +27,9 @@ class MascotasAdapter(private val context: Context, private val mascotas: ArrayL
 
         if (mascota.foto != null) {
             Picasso.with(context)
-                    .load(Constants.WEB_URL+mascota.foto)
+                    .load(Constants.WEB_URL + mascota.foto)
                     .placeholder(R.mipmap.ic_launcher)
+                    .resize(200, 200)
                     .into(holder.image);
         }
 

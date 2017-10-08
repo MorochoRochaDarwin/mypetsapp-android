@@ -183,6 +183,9 @@ class LoginFragment : Fragment() {
                     val intent = Intent(context, DataUserActivity::class.java)
                     intent.putExtra(DataUserActivity.USER_ID, user.user_id)
                     intent.putExtra(DataUserActivity.API_TOKEN, user.api_token)
+                    intent.putExtra(DataUserActivity.EST_ID, userResponse.establecimiento!!.establecimiento_id)
+                    intent.putExtra(DataUserActivity.EST_LOGO, userResponse.establecimiento.icono)
+                    intent.putExtra(DataUserActivity.EST_NOMBRE, userResponse.establecimiento.nombre_establecimiento)
                     startActivity(intent)
                     activity.finish()
 

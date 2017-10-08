@@ -29,7 +29,10 @@ class DataUserActivity : AppCompatActivity() {
     private var preferences: SharedPreferences? = null
 
     private var user_id: String? = null
+    private var est_id: String? = null
     private var api_token: String? = null
+    private var est_icono: String? = null
+    private var nombre_establecimiento: String? = null
 
     private val provincias = ArrayList<Provincia>()
     private val ciudades = ArrayList<Ciudad>()
@@ -63,6 +66,9 @@ class DataUserActivity : AppCompatActivity() {
 
     companion object {
         const val USER_ID = "datau.user_id"
+        const val EST_ID = "datau.est_id"
+        const val EST_LOGO = "datau.est_logo"
+        const val EST_NOMBRE = "datau.est_nombre"
         const val API_TOKEN = "datau.apitoken"
     }
 
@@ -71,6 +77,9 @@ class DataUserActivity : AppCompatActivity() {
         setContentView(R.layout.activity_data_user)
         user_id = intent.getStringExtra(USER_ID)
         api_token = intent.getStringExtra(API_TOKEN)
+        est_id = intent.getStringExtra(EST_ID)
+        est_icono = intent.getStringExtra(EST_LOGO)
+        nombre_establecimiento = intent.getStringExtra(EST_NOMBRE)
 
         preferences = PreferenceManager.getDefaultSharedPreferences(this)
 
@@ -527,7 +536,9 @@ class DataUserActivity : AppCompatActivity() {
                         editor.apply()
 
                         val intent = Intent(this@DataUserActivity, DashboardActivity::class.java)
-                        intent.putExtra(DashboardActivity.USER_ID,user_id)
+                        intent.putExtra(DashboardActivity.USER_ID, user_id)
+                        intent.putExtra(DashboardActivity.EST_NAME, nombre_establecimiento)
+                        intent.putExtra(DashboardActivity.EST_LOGO, est_icono)
                         finishAffinity()
                         startActivity(intent)
 
