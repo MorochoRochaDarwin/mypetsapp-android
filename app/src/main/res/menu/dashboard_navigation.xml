@@ -15,7 +15,7 @@
     <item
         android:id="@+id/navigation_aac"
         android:icon="@drawable/ic_calendar"
-        android:title="Agendar Cita medica" />
+        android:title="Agendar cita medica" />
 
     <item
         android:id="@+id/navigation_petfriendly"

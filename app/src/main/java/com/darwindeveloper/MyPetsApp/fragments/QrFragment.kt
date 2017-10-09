@@ -23,6 +23,7 @@ import com.darwindeveloper.MyPetsApp.api.Constants
 import com.darwindeveloper.MyPetsApp.api.WebApiClient
 import com.darwindeveloper.MyPetsApp.api.WebService
 import com.darwindeveloper.MyPetsApp.api.responses.QRResponse
+import com.google.firebase.messaging.FirebaseMessaging
 import com.google.gson.Gson
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
@@ -67,6 +68,10 @@ class QrFragment : Fragment(), MessageDialogFragment.MessageDialogListener,
                 intent.putExtra(DataUserActivity.EST_NOMBRE, res.establecimiento!!.nombre_establecimiento)
                 intent.putExtra(DataUserActivity.EST_LOGO, res.establecimiento!!.icono)
                 // intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+
+                FirebaseMessaging.getInstance().subscribeToTopic("platform-" + est_id)
+
+
                 startActivity(intent)
                 activity.finishAffinity()
             } else {

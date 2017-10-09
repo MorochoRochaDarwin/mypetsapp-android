@@ -24,6 +24,7 @@ import com.darwindeveloper.MyPetsApp.api.Constants
 import com.darwindeveloper.MyPetsApp.api.WebApiClient
 import com.darwindeveloper.MyPetsApp.api.WebService
 import com.darwindeveloper.MyPetsApp.api.responses.UserResponse
+import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.android.synthetic.main.fragment_login.view.*
 import retrofit2.Call
@@ -186,6 +187,7 @@ class LoginFragment : Fragment() {
                     intent.putExtra(DataUserActivity.EST_ID, userResponse.establecimiento!!.establecimiento_id)
                     intent.putExtra(DataUserActivity.EST_LOGO, userResponse.establecimiento.icono)
                     intent.putExtra(DataUserActivity.EST_NOMBRE, userResponse.establecimiento.nombre_establecimiento)
+                    FirebaseMessaging.getInstance().subscribeToTopic("platform-" + userResponse.establecimiento!!.establecimiento_id)
                     startActivity(intent)
                     activity.finish()
 
